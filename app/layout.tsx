@@ -10,8 +10,9 @@ const firaSans = Fira_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Adrian's Portfolio",
-    description: "Modern & Minimal JS Mastery Portfolio",
+    title: "Fahad Bin Munir | Another Software Engineer",
+    description:
+        "I am a passionate software engineer with a strong background in web development. I love to learn and explore new technologies.",
 };
 
 export default function RootLayout({
