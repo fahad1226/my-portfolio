@@ -4,66 +4,72 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+import { BackgroundBeamsWithCollision } from "./ui/ackground-beams-with-collision";
 
 const Approach = () => {
     return (
-        <section className="w-full py-20">
-            <h1 className="heading">
-                My <span className="text-purple">approach</span>
-            </h1>
-            {/* remove bg-white dark:bg-black */}
-            <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-                {/* add des prop */}
-                <Card
-                    title="Planning & Strategy"
-                    icon={<AceternityIcon order="Phase 1" />}
-                    des="We'll collaborate to map out your website's goals, target audience, 
-          and key functionalities. We'll discuss things like site structure, 
-          navigation, and content requirements."
-                >
-                    <CanvasRevealEffect
-                        animationSpeed={5.1}
-                        // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
-                        containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-                    />
-                </Card>
-                <Card
-                    title="Development & Progress Update"
-                    icon={<AceternityIcon order="Phase 2" />}
-                    des="Once we agree on the plan, I cue my lofi playlist and dive into
-          coding. From initial sketches to polished code, I keep you updated
-          every step of the way."
-                >
-                    <CanvasRevealEffect
-                        animationSpeed={3}
-                        // change bg-black to bg-pink-900
-                        containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-                        colors={[
-                            // change the colors of the
-                            [255, 166, 158],
-                            [221, 255, 247],
-                        ]}
-                        dotSize={2}
-                    />
-                    {/* Radial gradient for the cute fade */}
-                    {/* remove this one */}
-                    {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
-                </Card>
-                <Card
-                    title="Development & Launch"
-                    icon={<AceternityIcon order="Phase 3" />}
-                    des="This is where the magic happens! Based on the approved design, 
-          I'll translate everything into functional code, building your website
-          from the ground up."
-                >
-                    <CanvasRevealEffect
-                        animationSpeed={3}
-                        containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-                        colors={[[125, 211, 252]]}
-                    />
-                </Card>
+      <section className="w-full py-4">
+        <BackgroundBeamsWithCollision>
+          <h2 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
+            Why I am a big fan of NextJS?{" "}
+            <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+              <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
+                <span className="">Exploding beams.</span>
+              </div>
+              <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+                <span className="">Exploding beams.</span>
+              </div>
             </div>
-        </section>
+          </h2>
+        </BackgroundBeamsWithCollision>
+
+        {/* remove bg-white dark:bg-black */}
+        <div className=" flex flex-col lg:flex-row items-center justify-center w-full gap-4">
+          {/* add des prop */}
+          <Card
+            title="Hybrid Static & Server Rendering"
+            icon={<AceternityIcon order="Reason 1" />}
+            des="Next.js allows developers to use both static site generation (SSG) and server-side rendering (SSR) in the same application. This means pages can be pre-built for speed while also being dynamically rendered when needed, optimizing performance and SEO."
+          >
+            <CanvasRevealEffect
+              animationSpeed={5.1}
+              // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
+              containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
+            />
+          </Card>
+          <Card
+            title="Automatic Code Splitting"
+            icon={<AceternityIcon order="Reason 2" />}
+            des="Next.js automatically splits code at the page level, meaning only the necessary JavaScript is loaded when a user navigates to a page. This reduces initial load times and improves overall site performance."
+          >
+            <CanvasRevealEffect
+              animationSpeed={3}
+              // change bg-black to bg-pink-900
+              containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
+              colors={[
+                // change the colors of the
+                [255, 166, 158],
+                [221, 255, 247],
+              ]}
+              dotSize={2}
+            />
+            {/* Radial gradient for the cute fade */}
+            {/* remove this one */}
+            {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
+          </Card>
+          <Card
+            title="API Routes, Middleware & TypeScript"
+            icon={<AceternityIcon order="Reason 3" />}
+            des="Next.js API routes let you build backend functionality within your app, handling requests like data fetching and authentication. Middleware processes requests before they reach a page, enabling security, redirects, and optimizations. Using TypeScript, you get strong type safety, improved developer experience, and fewer runtime errors in API routes and middleware, ensuring a more reliable and scalable application. "
+          >
+            <CanvasRevealEffect
+              animationSpeed={3}
+              containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
+              colors={[[125, 211, 252]]}
+            />
+          </Card>
+        </div>
+      </section>
     );
 };
 

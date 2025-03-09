@@ -69,7 +69,7 @@ const items = [
 export function MyBlogList() {
     return (
         <>
-            <div>
+            <div className="py-24">
                 <h2 className="heading">
                     Articles I <span className="text-purple">Write</span>
                 </h2>
