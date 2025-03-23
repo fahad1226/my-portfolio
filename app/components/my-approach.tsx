@@ -66,7 +66,7 @@ function MyApproach() {
     return (
         <>
             <div className="py-24">
-                <h2 className="text-4xl md:text-4xl lg:text-6xl font-semibold container mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-300 via-neutral-500 to-neutral-200 ">
+                <h2 className="text-4xl md:text-4xl lg:text-6xl font-semibold container mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 via-neutral-500 to-neutral-100 ">
                     Unlock Your Application&apos;s <br /> Full Potential with{" "}
                     <Cover>Lightning Speed</Cover>
                 </h2>

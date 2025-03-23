@@ -21,4 +21,11 @@
     .common-border-radius {
         @apply rounded-xl;
     }
+    .brand-color {
+        @apply text-purple;
+    }
+
+    .page-sub-heading {
+        @apply bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 capitalize dark:to-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl py-2 md:py-10 relative z-20 font-bold;   
+    }
 }

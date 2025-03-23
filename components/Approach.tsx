@@ -3,73 +3,70 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
+import Link from "next/link";
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 import { BackgroundBeamsWithCollision } from "./ui/ackground-beams-with-collision";
 
 const Approach = () => {
     return (
-      <section className="w-full py-4">
-        <BackgroundBeamsWithCollision>
-          <h2 className="text-2xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black dark:text-white font-sans tracking-tight">
-            Why I am a big fan of NextJS?{" "}
-            <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-              <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">
-                <span className="">Exploding beams.</span>
-              </div>
-              <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
-                <span className="">Exploding beams.</span>
-              </div>
-            </div>
-          </h2>
-        </BackgroundBeamsWithCollision>
+        <section className="w-full py-4">
+            <BackgroundBeamsWithCollision>
+                <h2 className="page-sub-heading">
+                    Why I am a big fan of{" "}
+                    <span className="brand-color">NextJS</span>
+                </h2>
+            </BackgroundBeamsWithCollision>
 
-        {/* remove bg-white dark:bg-black */}
-        <div className=" flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-          {/* add des prop */}
-          <Card
-            title="Hybrid Static & Server Rendering"
-            icon={<AceternityIcon order="Reason 1" />}
-            des="Next.js allows developers to use both static site generation (SSG) and server-side rendering (SSR) in the same application. This means pages can be pre-built for speed while also being dynamically rendered when needed, optimizing performance and SEO."
-          >
-            <CanvasRevealEffect
-              animationSpeed={5.1}
-              // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
-              containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-            />
-          </Card>
-          <Card
-            title="Automatic Code Splitting"
-            icon={<AceternityIcon order="Reason 2" />}
-            des="Next.js automatically splits code at the page level, meaning only the necessary JavaScript is loaded when a user navigates to a page. This reduces initial load times and improves overall site performance."
-          >
-            <CanvasRevealEffect
-              animationSpeed={3}
-              // change bg-black to bg-pink-900
-              containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-              colors={[
-                // change the colors of the
-                [255, 166, 158],
-                [221, 255, 247],
-              ]}
-              dotSize={2}
-            />
-            {/* Radial gradient for the cute fade */}
-            {/* remove this one */}
-            {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
-          </Card>
-          <Card
-            title="API Routes, Middleware & TypeScript"
-            icon={<AceternityIcon order="Reason 3" />}
-            des="Next.js API routes let you build backend functionality within your app, handling requests like data fetching and authentication. Middleware processes requests before they reach a page, enabling security, redirects, and optimizations. Using TypeScript, you get strong type safety, improved developer experience, and fewer runtime errors in API routes and middleware, ensuring a more reliable and scalable application. "
-          >
-            <CanvasRevealEffect
-              animationSpeed={3}
-              containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-              colors={[[125, 211, 252]]}
-            />
-          </Card>
-        </div>
-      </section>
+            {/* remove bg-white dark:bg-black */}
+            <div className=" flex flex-col lg:flex-row items-center justify-center w-full gap-4">
+                {/* add des prop */}
+                <Card
+                    title="Unparalleled Performance Optimization"
+                    icon={<AceternityIcon order="Reason 1" />}
+                    des="Next.js offers exceptional performance with automatic image optimization, server-side rendering, and static site generation and many more. This leads to enhanced page loads, enhanced SEO rankings, and improved user experiences. Your company can benefit from reduced bounce rates, higher conversion rates, and reduced infrastructure costs while delivering an upscale digital experience."
+                    externalLink="https://nextjs.org/docs/app/building-your-application/optimizing/images"
+                >
+                    <CanvasRevealEffect
+                        animationSpeed={5.1}
+                        // add these classed for the border rounded overflowing -> rounded-3xl overflow-hidden
+                        containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
+                    />
+                </Card>
+                <Card
+                    title="Faster Development"
+                    icon={<AceternityIcon order="Reason 2" />}
+                    des="Next.js offers a range of features that make development faster and more efficient. With built-in TypeScript support, automatic code splitting, and a powerful CLI, we can quickly build and iterate on your application. Additionally, Next.js's ecosystem of tools and plugins can help you streamline our development process and improve productivity."
+                    externalLink="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming"
+                >
+                    <CanvasRevealEffect
+                        animationSpeed={3}
+                        // change bg-black to bg-pink-900
+                        containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
+                        colors={[
+                            // change the colors of the
+                            [255, 166, 158],
+                            [221, 255, 247],
+                        ]}
+                        dotSize={2}
+                    />
+                    {/* Radial gradient for the cute fade */}
+                    {/* remove this one */}
+                    {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
+                </Card>
+                <Card
+                    title="Hybrid Rendering Capabilities"
+                    icon={<AceternityIcon order="Reason 3" />}
+                    des="Next.js offers powerful hybrid rendering capabilities, seamlessly combining Static Site Generation (SSG), Server-Side Rendering (SSR), and Client-Side Rendering (CSR) in a single framework. This flexibility allows developers to optimize performance and SEO while delivering dynamic and interactive user experiences. By choosing the best rendering method for each page, Next.js ensures fast, scalable, and efficient web applications."
+                    externalLink="https://nextjs.org/docs/app/building-your-application/optimizing/images"
+                >
+                    <CanvasRevealEffect
+                        animationSpeed={3}
+                        containerClassName="bg-zinc-700 rounded-3xl overflow-hidden"
+                        colors={[[128, 128, 128]]}
+                    />
+                </Card>
+            </div>
+        </section>
     );
 };
 
@@ -81,11 +78,13 @@ const Card = ({
     children,
     // add this one for the desc
     des,
+    externalLink,
 }: {
     title: string;
     icon: React.ReactNode;
     children?: React.ReactNode;
     des: string;
+    externalLink: string;
 }) => {
     const [hovered, setHovered] = React.useState(false);
     return (
@@ -147,6 +146,18 @@ const Card = ({
                 >
                     {des}
                 </p>
+                <Link
+                    href={externalLink}
+                    target="_blank"
+                    className="flex justify-center opacity-0 group-hover/canvas-card:opacity-100
+         relative z-10 mt-6 group-hover/canvas-card:text-white text-center
+         group-hover/canvas-card:-translate-y-2 transition duration-200 underline"
+                >
+                    Learn More
+                    <span className="sr-only">
+                        Learn More About NextJS Built In Optimizations
+                    </span>
+                </Link>
             </div>
         </div>
     );
