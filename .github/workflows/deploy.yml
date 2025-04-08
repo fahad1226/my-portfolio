@@ -1,51 +1,38 @@
-name: Deploy Next.js to FTP Server (Portfolio Folder)
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
 on:
     push:
-        branches:
-            - master # Trigger deployment on push to the master branch
+        branches: ["master"]
+    pull_request:
+        branches: ["master"]
+
 jobs:
-    deploy:
-        name: Deploy to FTP
+    build:
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [18.x, 20.x, 22.x]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
         steps:
-            # Checkout the code from your repository
-            - name: Checkout Code
-              uses: actions/checkout@v3
-
-            # Set up Node.js environment
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
+            - uses: actions/checkout@v4
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v4
               with:
-                  node-version: "20"
+                  node-version: ${{ matrix.node-version }}
                   cache: "npm"
+            - run: npm ci
+            - run: npm run build --if-present
 
-            # Install dependencies and build the project
-            # if you have env variables in the project add them like below so that
-            # the build process wont fail
-            - name: Install dependencies and build
-              run: |
-                  npm install
-                  npm run build
-            # Prepare the deployment directory
-            - name: Prepare Deployment Directory
-              run: |
-                  rm -rf node_modules
-                  rm -rf .git
-
-            # Deploy files to FTP server
-            - name: Deploy via FTP
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+            - name: Deploy to cPanel via FTP
+              uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
                   server: ${{ secrets.FTP_SERVER }}
                   username: ${{ secrets.FTP_USERNAME }}
                   password: ${{ secrets.FTP_PASSWORD }}
-                  server-dir: /my-portfolio/
-                  exclude: |
-                      .git*
-                      **/.git*
-                      node_modules/**
-                      .github/**
-                  timeout: 600000 # Increased timeout to 10 minutes
-                  log-level: verbose
-                  dangerous-clean-slate: false
-                  local-dir: ./ # Explicitly set local directory
+                  local-dir: ./
+                  server-dir: /home/my-portfolio/
