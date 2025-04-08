@@ -1,55 +1,43 @@
-name: Deploy to Cpnel
-
+name: Deploy Next.js to FTP Server (Portfolio Folder)
 on:
     push:
-        branches: [master] # Adjust this to your main branch name (could be 'master')
-    workflow_dispatch: # Allows manual triggering from GitHub UI
-
+        branches:
+            - master # Trigger deployment on push to the master branch
 jobs:
-    build-and-deploy:
+    deploy:
+        name: Deploy to FTP
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+            # Checkout the code from your repository
+            - name: Checkout Code
+              uses: actions/checkout@v4
 
+            # Set up Node.js environment
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
-                  node-version: "18" # Adjust to your Node.js version
+                  node-version: "20"
+                  cache: "npm"
 
-            - name: Install dependencies
-              run: npm install # Or yarn install, depending on your package manager
-
-            - name: Build site
-              run: npm run build # Adjust to your build command
-
-            - name: Zip the build
+            # Install dependencies and build the project
+            # if you have env variables in the project add them like below so that
+            # the build process wont fail
+            - name: Install dependencies and build
               run: |
-                  # List directories to debug
-                  ls -la
-                  # Use the correct build directory name (likely 'dist' or 'out' instead of 'build')
-                  cd dist  # Change this to your actual build output directory name
-                  zip -r ../site.zip .
+                  npm install
+                  npm run build
+            # Prepare the deployment directory
+            - name: Prepare Deployment Directory
+              run: |
+                  rm -rf node_modules
+                  rm -rf .git
 
-            - name: Deploy to Capnel
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+            # Deploy files to FTP server
+            - name: Deploy via FTP
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
               with:
-                  server: ${{ secrets.CAPNEL_SERVER }}
-                  username: ${{ secrets.CAPNEL_USERNAME }}
-                  password: ${{ secrets.CAPNEL_PASSWORD }}
-                  port: ${{ secrets.CAPNEL_PORT }}
-                  local-dir: ./
-                  server-dir: /home/fahadbin/my-portfolio/
-                  dangerous-clean-slate: true
-
-            - name: Execute remote commands
-              uses: appleboy/ssh-action@v1.0.0
-              with:
-                  host: ${{ secrets.CAPNEL_SERVER }}
-                  username: ${{ secrets.CAPNEL_USERNAME }}
-                  password: ${{ secrets.CAPNEL_PASSWORD }}
-                  port: ${{ secrets.CAPNEL_PORT }}
-                  script: |
-                      cd /home/fahadbin/my-portfolio
-                      unzip -o site.zip
+                  server: ${{ secrets.FTP_SERVER }}
+                  username: ${{ secrets.FTP_USERNAME }}
+                  password: ${{ secrets.FTP_PASSWORD }}
+                  server-dir: /my-portfolio/
+                  exclude: .git/*
