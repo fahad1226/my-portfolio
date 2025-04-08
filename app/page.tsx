@@ -1,5 +1,5 @@
 import { navItems } from "@/data";
-
+import { Metadata } from "next";
 import Approach from "@/components/Approach";
 import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
@@ -10,6 +10,30 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import MyApproach from "./components/my-approach";
 import { MyBlogList } from "./components/my-blogs";
 import MyResume from "./components/my-resume";
+import JsonLd from "./components/JsonLd";
+
+export const metadata: Metadata = {
+    title: "Fahad Bin Munir | Another Software Engineer",
+    description:
+        "I am a passionate software engineer with a strong background in web development. I love to learn and explore new technologies.",
+    metadataBase: new URL("https://fahadbinmunir.com"),
+    keywords: [
+        "Fahad Bin Munir",
+        "Software Engineer",
+        "Web Developer",
+        "Software Developer",
+        "Software Engineer",
+        "Web Developer",
+        "Software Developer",
+    ],
+    alternates: {
+        canonical: "https://fahadbinmunir.com",
+        languages: {
+            "en-US": "https://fahadbinmunir.com",
+        },
+    },
+    publisher: "Fahad Bin Munir",
+};
 
 export default function HomePage() {
     return (
@@ -26,6 +50,7 @@ export default function HomePage() {
                 <MyBlogList />
                 <Footer />
             </div>
+            <JsonLd />
         </main>
     );
 }
