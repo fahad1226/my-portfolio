@@ -41,3 +41,6 @@ jobs:
                   password: ${{ secrets.FTP_PASSWORD }}
                   server-dir: /my-portfolio/
                   exclude: .git/*
+                  timeout: 120000 # Add timeout in milliseconds (2 minutes)
+                  log-level: verbose # Add verbose logging
+                  dangerous-clean-slate: false # Don't delete all files on server first
