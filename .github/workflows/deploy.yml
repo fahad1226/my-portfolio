@@ -1,46 +1,29 @@
-name: Deploy Next.js to FTP Server (Portfolio Folder)
+name: Deploy to FTP
+
 on:
     push:
         branches:
-            - master # Trigger deployment on push to the master branch
+            - master # Adjust the branch name as needed
+
 jobs:
     deploy:
-        name: Deploy to FTP
         runs-on: ubuntu-latest
+
         steps:
-            # Checkout the code from your repository
-            - name: Checkout Code
+            - name: Checkout code
               uses: actions/checkout@v4
 
-            # Set up Node.js environment
-            - name: Setup Node.js
+            - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: "20"
-                  cache: "npm"
+                  node-version: 14.21.2 # Use the desired Node.js version
 
-            # Install dependencies and build the project
-            # if you have env variables in the project add them like below so that
-            # the build process wont fail
-            - name: Install dependencies and build
+            - name: Install dependencies and build Next.js app
               run: |
-                  npm install
-                  npm run build
-            # Prepare the deployment directory
-            - name: Prepare Deployment Directory
-              run: |
-                  rm -rf node_modules
-                  rm -rf .git
+                  npm install  # Install project dependencies
+                  npm run build  # Build Next.js app
 
-            # Deploy files to FTP server
             - name: Deploy via FTP
-              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-              with:
-                  server: ${{ secrets.FTP_SERVER }}
-                  username: ${{ secrets.FTP_USERNAME }}
-                  password: ${{ secrets.FTP_PASSWORD }}
-                  server-dir: /my-portfolio/
-                  exclude: .git/*
-                  timeout: 120000 # Add timeout in milliseconds (2 minutes)
-                  log-level: verbose # Add verbose logging
-                  dangerous-clean-slate: false # Don't delete all files on server first
+              run: |
+                  lftp -e "open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}; set ssl:verify-certificate no; mirror -R -e -x .git/ -x .github/ -x .next/ -x node_modules/ 
+                  . /my-portfolio/; bye"
