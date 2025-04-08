@@ -26,7 +26,10 @@ jobs:
 
             - name: Zip the build
               run: |
-                  cd build  # Adjust to your build output directory
+                  # List directories to debug
+                  ls -la
+                  # Use the correct build directory name (likely 'dist' or 'out' instead of 'build')
+                  cd dist  # Change this to your actual build output directory name
                   zip -r ../site.zip .
 
             - name: Deploy to Capnel
