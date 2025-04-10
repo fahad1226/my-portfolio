@@ -3,27 +3,15 @@ import Image from "next/image";
 export default function MyHeroSection() {
     return (
         <>
-            <div className="relative h-screen">
+            <div className="relative h-screen w-full overflow-hidden">
                 {/* Background image */}
-                <div className="absolute h-full w-full">
-                    <Image
-                        alt="Cast Hero Background"
-                        src="/images/fahad-bin-munir-profile.png"
-                        width={2000}
-                        className="object-contain h-full w-full opacity-80"
-                        height={1500}
-                        quality={90}
-                        priority
-                    />
-                </div>
 
                 <div className="absolute z-20 h-full w-full">
                     <Image
-                        alt="Cast Hero Background"
                         src="/images/fahad-bin-munir-profile.png"
-                        width={2000}
+                        alt="Fahad Bin Munir | Web Performance Specialist | NextJS, ReactJS, TypeScript"
                         className="object-contain h-full w-full"
-                        height={1500}
+                        fill
                         quality={90}
                         priority
                     />
@@ -31,19 +19,21 @@ export default function MyHeroSection() {
 
                 <div className="absolute inset-0 bg-gradient-to-b z-20 from-transparent via-transparent to-black-100" />
 
-                <div className="mx-auto container absolute top-[15%] left-1/2 transform -translate-x-1/2">
+                {/* Name heading - responsive text sizes */}
+                <div className="absolute top-[15%] w-full px-4 sm:px-6 md:px-8">
                     <div className="w-full flex justify-center">
-                        <h3 className="text-white text-[160px] pointer-events-auto font-extrabold text-nowrap uppercase">
+                        <h3 className="text-white text-5xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[160px] font-extrabold uppercase text-center">
                             Fahad{" "}
                             <span
                                 style={{
                                     color: "transparent",
-                                    WebkitTextStrokeWidth: "3px",
+                                    WebkitTextStrokeWidth: "1px",
                                     WebkitTextStrokeColor: "#fff",
                                     fontStyle: "normal",
                                     fontWeight: "900",
                                     textTransform: "uppercase",
                                 }}
+                                className="block sm:inline md:inline-block"
                             >
                                 Bin Munir
                             </span>
@@ -51,12 +41,14 @@ export default function MyHeroSection() {
                     </div>
                 </div>
 
-                <div className="absolute container mx-auto bottom-[10%] z-30 left-1/2 transform -translate-x-1/2">
-                    <p className="text-white animate-bounce text-4xl tracking-wide font-extrabold text-center uppercase leading-10 mx-auto max-w-3xl">
+                {/* Bottom text section */}
+                <div className="absolute bottom-[10%] z-30 w-full px-4 sm:px-6 md:px-8">
+                    <p className="text-white animate-bounce text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide font-extrabold text-center uppercase leading-tight mx-auto max-w-3xl">
                         Web performance Specialist ⚡
                     </p>
-                    <p className="text-white text-xs tracking-wider font-semibold text-center leading-8">
-                        A Computer Science Graduate
+                    <p className="text-white text-xs sm:text-sm tracking-wider font-semibold text-center leading-relaxed mt-2">
+                        A Computer Science Graduate | NextJS, ReactJS,
+                        TypeScript
                     </p>
                 </div>
             </div>

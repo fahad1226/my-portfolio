@@ -53,7 +53,7 @@ const Experience = () => {
                                         at {card.company}
                                     </Link>
                                 </div>
-                                <p className="text-start text-white-100 mt-3 ">
+                                <p className="text-start text-white-100 mt-3 leading-relaxed">
                                     {card.desc}
                                 </p>
                             </div>

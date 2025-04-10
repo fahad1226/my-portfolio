@@ -7,19 +7,19 @@ import Image from "next/image";
 
 const RecentProjects = () => {
     return (
-        <div className="py-20">
+        <div className="sm:py-20 py-6">
             <h2 className="page-sub-heading">
                 A small selection of{" "}
                 <span className="text-purple">recent projects</span>
             </h2>
-            <div className="grid grid-cols-3 justify-items-center p-4 gap-16 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center p-4 gap-4 lg:gap-16 mt-10">
                 {projects.map((item) => (
                     <div
                         className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
                         key={item.id}
                     >
                         <PinContainer
-                            title="/ui.aceternity.com"
+                            title="Fahad Bin Munir Completed Projects"
                             href="https://github.com/fahad1226"
                         >
                             <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">

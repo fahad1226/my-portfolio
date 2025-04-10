@@ -1,38 +1,81 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: NIR 2025 Frontend CI
 
 on:
     push:
-        branches: ["master"]
-    pull_request:
-        branches: ["master"]
+        branches:
+            - main
 
 jobs:
-    build:
+    create-deployment-artifacts:
+        name: Create deployment artifacts
         runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [18.x, 20.x, 22.x]
-                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        outputs:
+            deployment-matrix: ${{ steps.export-deployment-matrix.outputs.deployment-matrix }}
 
         steps:
             - uses: actions/checkout@v4
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: "npm"
-            - run: npm ci
-            - run: npm run build --if-present
+            - name: Create deployment artifact
+              env:
+                  GITHUB_SHA: ${{ github.sha }}
+              run: tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules --exclude=.next *
 
-            - name: Deploy to cPanel via FTP
-              uses: SamKirkland/FTP-Deploy-Action@4.3.0
+            - name: Store artifact for distribution
+              uses: actions/upload-artifact@v4
               with:
-                  server: ${{ secrets.FTP_SERVER }}
-                  username: ${{ secrets.FTP_USERNAME }}
-                  password: ${{ secrets.FTP_PASSWORD }}
-                  local-dir: ./
-                  server-dir: /home/my-portfolio/
+                  name: app-build
+                  path: ${{ github.sha }}.tar.gz
+
+            - name: Export deployment matrix
+              id: export-deployment-matrix
+              run: |
+                  JSON="$(cat ./deployment.json)"
+                  JSON="${JSON//'%'/'%25'}"
+                  JSON="${JSON//$'\n'/'%0A'}"
+                  JSON="${JSON//$'\r'/'%0D'}"
+                  echo "::set-output name=deployment-matrix::$JSON"
+
+    prepare-release-on-servers:
+        name: "${{ matrix.server.name }}: Prepare release"
+        runs-on: ubuntu-latest
+        needs: create-deployment-artifacts
+        strategy:
+            matrix:
+                server: ${{ fromJson(needs.create-deployment-artifacts.outputs.deployment-matrix) }}
+        steps:
+            - uses: actions/download-artifact@v4
+              with:
+                  name: app-build
+            - name: Upload
+              uses: appleboy/scp-action@v0.1.7
+              with:
+                  host: ${{ matrix.server.ip }}
+                  username: ${{ secrets.SERVER_KEY_PRODUCTION }}
+                  password: ${{ secrets.SERVER_SECRET_PRODUCTION }}
+                  port: ${{ matrix.server.port }}
+                  source: ${{ github.sha }}.tar.gz
+                  target: ${{ matrix.server.release_path }}/artifacts
+            - name: Extract archive and create directories
+              uses: appleboy/ssh-action@master
+              env:
+                  GITHUB_SHA: ${{ github.sha }}
+                  APP_VERSION: ${{ matrix.server.version }}
+                  BASE_PATH: ${{ matrix.server.release_path }}/releases/${{ matrix.server.version }}
+                  ENV: ${{ secrets.ENV_PRODUCTION }}
+                  HTACCESS: ${{ secrets.HTACCESS_PRODUCTION_LIVE }}
+
+              with:
+                  host: ${{ matrix.server.ip }}
+                  username: ${{ secrets.SERVER_KEY_PRODUCTION }}
+                  password: ${{ secrets.SERVER_SECRET_PRODUCTION }}
+                  port: ${{ matrix.server.port }}
+                  envs: GITHUB_SHA,ENV,HTACCESS,PACKAGE
+                  script: |
+                      mkdir -m 777 -p "${{ matrix.server.release_path }}/releases/${{ matrix.server.version }}"
+                      tar xzf ${{ matrix.server.release_path }}/artifacts/${GITHUB_SHA}.tar.gz -C "${{ matrix.server.release_path }}/releases/${{ matrix.server.version }}"
+                      cd ${{ matrix.server.release_path }}/releases/${{ matrix.server.version }}
+                      printf "%s" "$ENV" > "${{ matrix.server.release_path }}/releases/${{ matrix.server.version }}/.env.production"
+                      printf "%s" "$HTACCESS" > "${{ matrix.server.public_path }}/.htaccess"
+                      npm install
+                      npm run build
+                      pm2 delete nir-next
+                      pm2 start npm --name "nir-next" -- run start -- -p 3001

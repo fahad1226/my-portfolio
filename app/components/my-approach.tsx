@@ -65,8 +65,8 @@ const features = [
 function MyApproach() {
     return (
         <>
-            <div className="py-24">
-                <h2 className="text-4xl md:text-4xl lg:text-6xl font-semibold container mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 via-neutral-500 to-neutral-100 ">
+            <div className="sm:py-24 py-6">
+                <h2 className="text-4xl md:text-4xl lg:text-6xl font-semibold container mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 via-neutral-500 to-neutral-100">
                     Unlock Your Application&apos;s <br /> Full Potential with{" "}
                     <Cover>Lightning Speed</Cover>
                 </h2>
@@ -101,7 +101,7 @@ const Feature = ({
     return (
         <div
             className={cn(
-                "flex flex-col lg:border-r  py-10 relative group/feature dark:border-neutral-800",
+                "flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800",
                 (index === 0 || index === 4) &&
                     "lg:border-l dark:border-neutral-800",
                 index < 4 && "lg:border-b dark:border-neutral-800"
@@ -122,7 +122,7 @@ const Feature = ({
                     {title}
                 </span>
             </div>
-            <p className="text-neutral-600 tracking-wide dark:text-neutral-300 max-w-xs relative z-10 px-10">
+            <p className="text-neutral-600 tracking-wide dark:text-neutral-300 max-w-md relative z-10 px-10">
                 {description}
             </p>
         </div>

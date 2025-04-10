@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-    distDir: 'my-portfolio',
     images: {
         remotePatterns: [
             {
