@@ -35,7 +35,7 @@ export default function RootLayout({
                         })(window,document,'script','dataLayer','GTM-TVTG8GR3');`,
                     }}
                 />
-                <link rel="icon" href="/jsm-logo.png" sizes="any" />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
             </head>
             <body className={firaSans.className}>
                 {/* Google Tag Manager (noscript) */}

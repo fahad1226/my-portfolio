@@ -3,12 +3,12 @@ import Image from "next/image";
 export default function MyHeroSection() {
     return (
         <>
-            <div className="relative h-screen w-full overflow-hidden">
+            <div className="relative h-screen overflow-hidden">
                 {/* Background image */}
 
                 <div className="absolute z-20 h-full w-full">
                     <Image
-                        src="/images/fahad-bin-munir-profile.png"
+                        src="/images/fahad_bin_munir_profile.webp"
                         alt="Fahad Bin Munir | Web Performance Specialist | NextJS, ReactJS, TypeScript"
                         className="object-contain h-full w-full"
                         fill
@@ -20,9 +20,9 @@ export default function MyHeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-b z-20 from-transparent via-transparent to-black-100" />
 
                 {/* Name heading - responsive text sizes */}
-                <div className="absolute top-[15%] w-full px-4 sm:px-6 md:px-8">
+                <div className="absolute top-[15%] w-full px-4">
                     <div className="w-full flex justify-center">
-                        <h3 className="text-white text-5xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[160px] font-extrabold uppercase text-center">
+                        <h1 className="text-white text-5xl sm:text-6xl md:text-8xl lg:text-[120px] xl:text-[140px] font-extrabold uppercase text-center">
                             Fahad{" "}
                             <span
                                 style={{
@@ -33,11 +33,10 @@ export default function MyHeroSection() {
                                     fontWeight: "900",
                                     textTransform: "uppercase",
                                 }}
-                                className="block sm:inline md:inline-block"
                             >
                                 Bin Munir
                             </span>
-                        </h3>
+                        </h1>
                     </div>
                 </div>
 
