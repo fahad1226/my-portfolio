@@ -3,17 +3,15 @@ import Image from "next/image";
 export default function MyHeroSection() {
     return (
         <>
-            <div className="relative h-screen overflow-hidden">
-                {/* Background image */}
-
+            <div className="relative h-screen w-full overflow-hidden">
                 <div className="absolute z-20 h-full w-full">
                     <Image
                         src="/images/fahad_bin_munir_profile.webp"
                         alt="Fahad Bin Munir | Web Performance Specialist | NextJS, ReactJS, TypeScript"
                         className="object-contain h-full w-full"
-                        fill
-                        quality={90}
-                        priority
+                        unoptimized
+                        width={1920}
+                        height={1080}
                     />
                 </div>
 
@@ -27,12 +25,13 @@ export default function MyHeroSection() {
                             <span
                                 style={{
                                     color: "transparent",
-                                    WebkitTextStrokeWidth: "1px",
+                                    WebkitTextStrokeWidth: "2px",
                                     WebkitTextStrokeColor: "#fff",
                                     fontStyle: "normal",
                                     fontWeight: "900",
                                     textTransform: "uppercase",
                                 }}
+                                className="block md:inline-block"
                             >
                                 Bin Munir
                             </span>

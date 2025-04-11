@@ -1,15 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { IoCopyOutline } from "react-icons/io5";
+import { IoMailOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
-
-// Also install this npm i --save-dev @types/react-lottie
-import Lottie from "react-lottie";
 import { cn } from "@/lib/utils";
-
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
+
 const GridGlobe = dynamic(
     () => import("./GridGlobe").then((mod) => mod.default),
     {
@@ -63,23 +60,6 @@ export const BentoGridItem = ({
 }) => {
     const leftLists = ["Typescript", "ReactJS", "NextJS", "TailwindCSS"];
     const rightLists = ["Docker", "Web Vitals", "GraphQL", "Clean Code"];
-
-    const [copied, setCopied] = useState(false);
-
-    const defaultOptions = {
-        loop: copied,
-        autoplay: copied,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-        },
-    };
-
-    const handleCopy = () => {
-        const text = "fahadbinmnr@gmail.com";
-        navigator.clipboard.writeText(text);
-        setCopied(true);
-    };
 
     return (
         <div
@@ -184,13 +164,8 @@ export const BentoGridItem = ({
                     {id === 6 && (
                         <div className="mt-5 relative">
                             <MagicButton
-                                title={
-                                    copied
-                                        ? "Email is Copied"
-                                        : "Copy Email"
-                                }
-                                icon={<IoCopyOutline />}
-                                handleClick={handleCopy}
+                                title="Send Email"
+                                icon={<IoMailOutline />}
                                 position="left"
                                 otherClasses="!bg-[#161A31]"
                             />
