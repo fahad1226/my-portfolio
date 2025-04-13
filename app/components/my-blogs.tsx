@@ -1,14 +1,24 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Article } from "../page";
 
-export function MyBlogList() {
+export function MyBlogList({
+    articles,
+    showTitle = true,
+}: {
+    articles: Article[];
+    showTitle?: boolean;
+}) {
     return (
         <>
             <div className="py-24">
-                <h2 className="page-sub-heading">
-                    Explore My{" "}
-                    <span className="brand-color">Written Works</span>
-                </h2>
+                {showTitle && (
+                    <h2 className="page-sub-heading">
+                        Explore My{" "}
+                        <span className="brand-color">Written Works</span>
+                    </h2>
+                )}
+
                 <div className="max-w-7xl mx-auto mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (

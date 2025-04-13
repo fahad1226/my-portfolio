@@ -6,6 +6,8 @@ import MyHeroSection from "@/components/Hero";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { Metadata } from "next";
 import JsonLd from "./components/JsonLd";
 import MyApproach from "./components/my-approach";
@@ -13,18 +15,22 @@ import { MyBlogList } from "./components/my-blogs";
 import MyResume from "./components/my-resume";
 
 export const metadata: Metadata = {
-    title: "Fahad Bin Munir | Another Software Engineer",
+    title: "Fahad Bin Munir | Software Engineer | Expert in TypeScript, NextJS, and React | Web UX & Performance Specialist",
     description:
-        "I am a passionate software engineer with a strong background in web development. I love to learn and explore new technologies.",
+        "Fahad Bin Munir is a seasoned software engineer with expertise in TypeScript, NextJS, and React. He specializes in enhancing web user experience and performance.",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
         "Software Engineer",
         "Web Developer",
-        "Software Developer",
-        "Software Engineer",
-        "Web Developer",
-        "Software Developer",
+        "TypeScript Expert",
+        "NextJS Expert",
+        "React Developer",
+        "Web UX & Performance Specialist",
+        "Frontend Development",
+        "Web Technologies",
+        "Software Development",
+        "Web Design",
     ],
     alternates: {
         canonical: "https://fahadbinmunir.com",
@@ -33,11 +39,31 @@ export const metadata: Metadata = {
         },
     },
     publisher: "Fahad Bin Munir",
+    authors: {
+        name: "Fahad Bin Munir",
+        url: "https://fahadbinmunir.com",
+    },
 };
+export interface Article {
+    id: string;
+    title: string;
+    slug: string;
+    shortDescription: string;
+    content: string;
+    author: string;
+    duration: string;
+    published_at: string;
+    coverImage: string;
+}
 
-export default function HomePage() {
+export default async function HomePage() {
+    const snapshot = await getDocs(collection(db, "articles"));
+    const articles = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    })) as Article[];
     return (
-        <main className="relative bg-black-100 flex justify-center items-center flex-col scroll-smooth overflow-hidden mx-auto sm:px-10">
+        <>
             <div className="container mx-auto w-full px-4 sm:px-6">
                 <FloatingNav navItems={navItems} />
                 <MyHeroSection />
@@ -47,10 +73,10 @@ export default function HomePage() {
                 <MyResume />
                 <Experience />
                 <Approach />
-                <MyBlogList />
+                <MyBlogList articles={articles} />
                 <Footer />
             </div>
             <JsonLd />
-        </main>
+        </>
     );
 }
