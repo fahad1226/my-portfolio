@@ -53,7 +53,9 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <main className="relative bg-black-100 flex justify-center items-center flex-col scroll-smooth overflow-hidden mx-auto sm:px-10">
+                        {children}
+                    </main>
                 </ThemeProvider>
             </body>
         </html>
