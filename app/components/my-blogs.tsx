@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, show_data } from "@/lib/utils";
 import Image from "next/image";
 import { Article } from "../page";
 
@@ -19,10 +19,12 @@ export function MyBlogList({
                     </h2>
                 )}
 
+                <pre className="text-white-100 text-3xl">{show_data(articles)}</pre>
+
                 <div className="max-w-7xl mx-auto mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                            <CardDemo key={item} />
+                        {articles.map((item) => (
+                            <CardDemo key={item.id} article={item} />
                         ))}
                     </div>
                 </div>
@@ -31,7 +33,7 @@ export function MyBlogList({
     );
 }
 
-export function CardDemo() {
+export function CardDemo({ article }: { article: Article }) {
     return (
         <div className="max-w-full w-full group/card z-40">
             <div
@@ -53,16 +55,17 @@ export function CardDemo() {
                         <p className="font-normal text-base text-gray-50 relative z-10">
                             Fahad Bin Munir
                         </p>
-                        <p className="text-sm text-gray-400">2 min read</p>
+                        <p className="text-sm text-gray-400">
+                            {article.duration} minutes read
+                        </p>
                     </div>
                 </div>
                 <div className="text content">
-                    <h1 className="font-bold text-xl md:text-2xl text-gray-50 relative z-10">
-                        Author Card
-                    </h1>
+                    <h3 className="font-bold text-xl md:text-2xl text-gray-50 relative z-10">
+                        {article.title}
+                    </h3>
                     <p className="font-normal text-sm text-gray-50 relative z-10 my-4">
-                        Card with Author avatar, complete name and time to read
-                        - most suitable for blogs.
+                        {article.shortDescription}
                     </p>
                 </div>
             </div>

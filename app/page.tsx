@@ -57,11 +57,8 @@ export interface Article {
 }
 
 export default async function HomePage() {
-    const snapshot = await getDocs(collection(db, "articles"));
-    const articles = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-    })) as Article[];
+    const blogs = await getDocs(collection(db, "articles"));
+    const articles = blogs.docs.map((doc) => doc.data() as Article);
     return (
         <>
             <div className="container mx-auto w-full px-4 sm:px-6">

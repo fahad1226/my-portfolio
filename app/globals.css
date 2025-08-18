@@ -26,6 +26,32 @@
     }
 
     .page-sub-heading {
-        @apply bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 capitalize dark:to-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl py-2 md:py-10 relative z-20 font-bold;   
+        @apply bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 capitalize dark:to-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl py-2 md:py-10 relative z-20 font-bold;
     }
+}
+
+/* Quill Editor Customization */
+.ql-toolbar {
+    color: white !important;
+    background-color: #374151 !important; /* gray-700 */
+}
+.ql-toolbar button,
+.ql-toolbar .ql-picker {
+    color: white !important;
+}
+.ql-toolbar .ql-stroke {
+    stroke: white !important;
+}
+.ql-toolbar .ql-fill {
+    fill: white !important;
+}
+.ql-toolbar .ql-picker-label {
+    color: white !important;
+}
+.ql-toolbar .ql-picker-options {
+    background-color: #4b5563 !important; /* gray-600 */
+    color: white !important;
+}
+.ql-toolbar .ql-picker-item {
+    color: white !important;
 }
