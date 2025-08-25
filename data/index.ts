@@ -82,7 +82,7 @@ export const projects = [
     {
         id: 2,
         title: "Never In Reverse",
-        des: "I designed and developed this podcast website from figma to production using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
+        des: "I designed and developed this podcast website from Figma to production using Typescript, NextJS, TailwindCSS, Framer Motion, AWS, Cursor and more.",
         img: "/never-in-reverse.png",
         iconLists: [
             "/next.svg",
@@ -96,7 +96,7 @@ export const projects = [
     {
         id: 3,
         title: "Fluent Conveyors",
-        des: "I designed and developed this website from scratch using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
+        des: "I designed and developed the whole frontend of this website from scratch using Typescript, NextJS, TailwindCSS, Framer Motion, AWS, Cursor and more.",
         img: "/fluent-conveyors.png",
         iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
         link: "https://www.fluentconveyors.com/",
@@ -104,7 +104,7 @@ export const projects = [
     {
         id: 4,
         title: "Recycling Baler",
-        des: "I collaborated with a team of 3 to design and develop this website using typescript, nextjs, tailwindcss, framer motion and I've used Laravel to build the backend.",
+        des: "I collaborated with my current team to design and develop this website using Typescript, NextJS, TailwindCSS, Framer Motion, AWS, Cursor and more.",
         img: "/recycling-baler.png",
         iconLists: [
             "/next.svg",
@@ -118,7 +118,7 @@ export const projects = [
     {
         id: 5,
         title: "Today App",
-        des: "I colborated with one of my friends to design and develop this app using Laravel, VueJS, TailwindCSS, MySQL, AWS, Docker and more.",
+        des: "I collaborated with one of my colleagues to design and develop this app for a small startup called Anveen Networks using. We have used Laravel, VueJS, TailwindCSS, MySQL, AWS, Docker and more.",
         img: "/today-app.png",
         iconLists: [
             "/next.svg",
@@ -131,9 +131,9 @@ export const projects = [
     },
     {
         id: 6,
-        title: "Track My Subscription",
-        des: "I designed and developed this website from scratch using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
-        img: "/track-my-subscription.png",
+        title: "NIECO LTD Solutions",
+        des: "I designed and developed this website for a local company to enhance their brand and online presence. I have used NextJS, TailwindCSS, Framer Motion, AWS and more.",
+        img: "/nieco-ltd.png",
         iconLists: [
             "/next.svg",
             "/tail.svg",
@@ -141,7 +141,7 @@ export const projects = [
             "/three.svg",
             "/gsap.svg",
         ],
-        link: "https://github.com/fahad1226/track-my-subscription",
+        link: "https://niecoltd.com/",
     },
 ];
 
