@@ -4,6 +4,8 @@ import { Fira_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
+import { FloatingNav } from "@/components/ui/FloatingNavbar";
+import { navItems } from "@/data";
 
 const firaSans = Fira_Sans({
     subsets: ["latin"],
@@ -53,9 +55,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main className="relative bg-black-100 flex justify-center items-center flex-col scroll-smooth overflow-hidden mx-auto sm:px-10">
-                        {children}
-                    </main>
+                    <main>{children}</main>
                 </ThemeProvider>
             </body>
         </html>

@@ -1,25 +1,24 @@
 import { cn, show_data } from "@/lib/utils";
 import Image from "next/image";
-import { Article } from "../page";
+import { ArticleTypes } from "../page";
+import Link from "next/link";
 
 export function MyBlogList({
     articles,
     showTitle = true,
 }: {
-    articles: Article[];
+    articles: ArticleTypes[];
     showTitle?: boolean;
 }) {
     return (
         <>
-            <div className="py-24">
+            <div className="py-16">
                 {showTitle && (
                     <h2 className="page-sub-heading">
                         Explore My{" "}
                         <span className="brand-color">Written Works</span>
                     </h2>
                 )}
-
-                <pre className="text-white-100 text-3xl">{show_data(articles)}</pre>
 
                 <div className="max-w-7xl mx-auto mt-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -33,41 +32,69 @@ export function MyBlogList({
     );
 }
 
-export function CardDemo({ article }: { article: Article }) {
+export function CardDemo({ article }: { article: ArticleTypes }) {
     return (
-        <div className="max-w-full w-full group/card z-40">
+        <div className="max-w-full w-full group/card relative">
             <div
                 className={cn(
-                    "cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl backgroundImage flex flex-col justify-between p-4",
-                    "bg-[url(https://images.unsplash.com/photo-1544077960-604201fe74bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1651&q=80)] bg-cover"
+                    "cursor-pointer overflow-hidden relative card h-96 rounded-xl shadow-2xl flex flex-col justify-between p-6",
+                    "bg-[url(/images/default-blog-image.avif)] bg-cover bg-center transition-all duration-300",
+                    "hover:scale-[1.02] hover:shadow-3xl"
                 )}
             >
-                <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60"></div>
-                <div className="flex flex-row items-center space-x-4 z-10">
+                {/* Gradient overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+
+                {/* Author section */}
+                <div className="flex flex-row items-center space-x-4 relative z-20">
                     <Image
                         height="100"
                         width="100"
                         alt="Avatar"
                         src="/images/fahad.jpeg"
-                        className="h-10 w-10 rounded-full border-2 object-cover"
+                        className="h-12 w-12 rounded-full border-2 border-white/20 object-cover shadow-lg"
                     />
                     <div className="flex flex-col">
-                        <p className="font-normal text-base text-gray-50 relative z-10">
+                        <p className="font-semibold text-base text-white">
                             Fahad Bin Munir
                         </p>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-gray-300 font-medium">
                             {article.duration} minutes read
                         </p>
                     </div>
                 </div>
-                <div className="text content">
-                    <h3 className="font-bold text-xl md:text-2xl text-gray-50 relative z-10">
+
+                {/* Content section */}
+                <Link
+                    href={`/blog/${article.slug}`}
+                    className="relative z-20 space-y-4 block"
+                >
+                    <h3 className="font-bold text-xl md:text-2xl text-white leading-tight line-clamp-1">
                         {article.title}
                     </h3>
-                    <p className="font-normal text-sm text-gray-50 relative z-10 my-4">
+                    <p className="font-normal text-sm text-gray-200 leading-relaxed line-clamp-2">
                         {article.shortDescription}
                     </p>
-                </div>
+
+                    <div className="flex items-center space-x-2 pt-2">
+                        <span className="brand-color font-medium text-sm">
+                            Read more
+                        </span>
+                        <svg
+                            className="w-4 h-4 brand-color transition-transform group-hover/card:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                            />
+                        </svg>
+                    </div>
+                </Link>
             </div>
         </div>
     );

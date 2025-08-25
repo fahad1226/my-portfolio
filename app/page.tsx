@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: "https://fahadbinmunir.com",
     },
 };
-export interface Article {
+export interface ArticleTypes {
     id: string;
     title: string;
     slug: string;
@@ -58,9 +58,9 @@ export interface Article {
 
 export default async function HomePage() {
     const blogs = await getDocs(collection(db, "articles"));
-    const articles = blogs.docs.map((doc) => doc.data() as Article);
+    const articles = blogs.docs.map((doc) => doc.data() as ArticleTypes);
     return (
-        <>
+        <div className="relative flex justify-center items-center flex-col scroll-smooth overflow-hidden mx-auto sm:px-10">
             <div className="container mx-auto w-full px-4 sm:px-6">
                 <FloatingNav navItems={navItems} />
                 <MyHeroSection />
@@ -74,6 +74,6 @@ export default async function HomePage() {
                 <Footer />
             </div>
             <JsonLd />
-        </>
+        </div>
     );
 }

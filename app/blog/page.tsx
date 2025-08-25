@@ -3,6 +3,10 @@ import { navItems } from "@/data";
 import { Metadata } from "next";
 import BlogHeroSection from "../components/blog-hero";
 import { MyBlogList } from "../components/my-blogs";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { ArticleTypes } from "../page";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
     title: "Blog | Fahad Bin Munir",
@@ -35,14 +39,18 @@ export const metadata: Metadata = {
     },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+    const blogs = await getDocs(collection(db, "articles"));
+    const articles = blogs.docs.map((doc) => doc.data() as ArticleTypes);
     return (
         <>
             <BlogHeroSection />
             <div className="relative container mx-auto w-full px-4 sm:px-6">
                 <FloatingNav navItems={navItems} />
 
-                <MyBlogList showTitle={false} />
+                <MyBlogList showTitle={false} articles={articles} />
+
+                <Footer />
             </div>
         </>
     );

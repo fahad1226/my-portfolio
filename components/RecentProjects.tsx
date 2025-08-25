@@ -4,6 +4,7 @@ import { projects } from "@/data";
 import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
 import { PinContainer } from "./ui/Pin";
+import Link from "next/link";
 
 const RecentProjects = () => {
     return (
@@ -39,7 +40,7 @@ const RecentProjects = () => {
                                     alt="cover"
                                     width={1000}
                                     height={1000}
-                                    className="z-10 absolute bottom-0"
+                                    className="z-10 absolute bottom-0 rotate-6"
                                 />
                             </div>
 
@@ -48,7 +49,8 @@ const RecentProjects = () => {
                             </h1>
 
                             <p
-                                className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2"
+                                title={item.des}
+                                className="font-light text-sm line-clamp-3"
                                 style={{
                                     color: "#BEC1DD",
                                     margin: "1vh 0",
@@ -80,7 +82,11 @@ const RecentProjects = () => {
                                     ))}
                                 </div>
 
-                                <div className="flex justify-center items-center">
+                                <Link
+                                    href={item.link}
+                                    target="_blank"
+                                    className="flex justify-center items-center cursor-pointer"
+                                >
                                     <p className="flex lg:text-xl md:text-xs text-sm text-purple">
                                         Check Live Site
                                     </p>
@@ -88,7 +94,7 @@ const RecentProjects = () => {
                                         className="ms-3"
                                         color="#CBACF9"
                                     />
-                                </div>
+                                </Link>
                             </div>
                         </PinContainer>
                     </div>

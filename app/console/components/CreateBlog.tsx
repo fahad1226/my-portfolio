@@ -98,272 +98,290 @@ function CreateBlog() {
     };
 
     return (
-        <div className="container mx-auto">
-            <div className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg w-full">
-                <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white border-b pb-4">
-                    Create New Blog Post
-                </h1>
-
-                <form onSubmit={handleSubmit} className="space-y-8 w-full">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Title */}
-                        <div className="col-span-2">
-                            <label
-                                htmlFor="title"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+            <div className="container mx-auto px-4 py-8 max-w-6xl">
+                {/* Header Section */}
+                <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                        <button
+                            onClick={() => router.back()}
+                            className="p-2 rounded-full bg-white shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 text-gray-600 hover:text-gray-800"
+                        >
+                            <svg
+                                className="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                             >
-                                Title
-                            </label>
-                            <input
-                                type="text"
-                                id="title"
-                                name="title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                                placeholder="Enter blog title"
-                            />
-                        </div>
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                        </button>
+                        <h1 className="text-3xl font-bold text-gray-900">
+                            Create New Blog Post
+                        </h1>
+                    </div>
+                    <p className="text-gray-600 text-lg">
+                        Share your thoughts and insights with the world
+                    </p>
+                </div>
 
-                        {/* Slug */}
-                        <div className="col-span-2 md:col-span-1">
-                            <label
-                                htmlFor="slug"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                            >
-                                Slug
-                            </label>
-                            <div className="flex">
+                {/* Main Form Card */}
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <form onSubmit={handleSubmit} className="p-8">
+                        <div className="space-y-8">
+                            {/* Title Section */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="title"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Blog Title
+                                </label>
                                 <input
                                     type="text"
-                                    id="slug"
-                                    name="slug"
-                                    value={formData.slug}
+                                    id="title"
+                                    name="title"
+                                    value={formData.title}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                                    placeholder="blog-post-url"
+                                    className="w-full px-6 py-4 text-lg border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white text-black"
+                                    placeholder="Enter an engaging title for your blog post..."
                                 />
-                                <button
-                                    type="button"
-                                    onClick={generateSlug}
-                                    className="px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-200 rounded-r-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
-                                >
-                                    Generate
-                                </button>
                             </div>
-                        </div>
 
-                        {/* Duration */}
-                        <div className="col-span-2 md:col-span-1">
-                            <label
-                                htmlFor="duration"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                            >
-                                Duration (minutes)
-                            </label>
-                            <input
-                                type="text"
-                                id="duration"
-                                name="duration"
-                                value={formData.duration}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                                placeholder="5 min read"
-                            />
-                        </div>
-
-                        {/* Published Date */}
-                        <div className="col-span-2">
-                            <label
-                                htmlFor="published_at"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                            >
-                                Publication Date
-                            </label>
-                            <input
-                                type="date"
-                                id="published_at"
-                                name="published_at"
-                                value={formData.published_at}
-                                onChange={handleChange}
-                                required
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                            />
-                        </div>
-
-                        {/* Cover Image */}
-                        <div className="col-span-2">
-                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                Cover Image
-                            </label>
-                            <div>
-                                <div>
-                                    <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
-                                        Option 1: Image URL
+                            {/* Slug and Duration Row */}
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div className="space-y-4">
+                                    <label
+                                        htmlFor="slug"
+                                        className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                    >
+                                        URL Slug
                                     </label>
-                                    <input
-                                        type="url"
-                                        id="coverImage"
-                                        name="coverImage"
-                                        value={formData.coverImage}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                                        placeholder="https://example.com/image.jpg"
-                                        disabled={!!imageFile}
-                                    />
-                                </div>
-                                {/* <div>
-                                    <label className="block text-sm text-gray-600 dark:text-gray-400 mb-1">
-                                        Option 2: Upload Image
-                                    </label>
-                                    <div className="flex items-center">
+                                    <div className="flex">
                                         <input
-                                            type="file"
-                                            ref={fileInputRef}
-                                            accept="image/*"
-                                            onChange={handleImageUpload}
-                                            className="hidden"
+                                            type="text"
+                                            id="slug"
+                                            name="slug"
+                                            value={formData.slug}
+                                            onChange={handleChange}
+                                            required
+                                            className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-l-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white text-black"
+                                            placeholder="blog-post-url"
                                         />
                                         <button
                                             type="button"
-                                            onClick={() =>
-                                                fileInputRef.current?.click()
-                                            }
-                                            className="px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 transition-colors"
+                                            onClick={generateSlug}
+                                            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-r-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                                         >
-                                            Choose File
+                                            Generate
                                         </button>
-                                        <span className="ml-3 text-sm text-gray-500 dark:text-gray-400">
-                                            {imageFile
-                                                ? imageFile.name
-                                                : "No file chosen"}
-                                        </span>
                                     </div>
-                                </div> */}
+                                </div>
+
+                                <div className="space-y-4">
+                                    <label
+                                        htmlFor="duration"
+                                        className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                    >
+                                        Reading Time
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="duration"
+                                        name="duration"
+                                        value={formData.duration}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white text-black"
+                                        placeholder="5 min read"
+                                    />
+                                </div>
                             </div>
 
-                            {/* Image Preview */}
-                            {imagePreview && (
-                                <div className="mt-4">
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                                        Preview:
-                                    </p>
-                                    <div className="relative h-48 w-full md:w-1/2 border border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
-                                        <Image
-                                            src={imagePreview}
-                                            alt="Cover image preview"
-                                            fill
-                                            style={{ objectFit: "cover" }}
-                                        />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            setImagePreview(null);
-                                            setImageFile(null);
-                                            if (fileInputRef.current)
-                                                fileInputRef.current.value = "";
-                                        }}
-                                        className="mt-2 text-sm text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                                    >
-                                        Remove image
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Short Description */}
-                        <div className="col-span-2">
-                            <label
-                                htmlFor="shortDescription"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                            >
-                                Short Description
-                            </label>
-                            <textarea
-                                id="shortDescription"
-                                name="shortDescription"
-                                value={formData.shortDescription}
-                                onChange={handleChange}
-                                required
-                                rows={3}
-                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 dark:text-white"
-                                placeholder="Brief summary of the blog post"
-                            />
-                        </div>
-
-                        {/* Content */}
-                        <div className="col-span-2">
-                            <label
-                                htmlFor="content"
-                                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                            >
-                                Content
-                            </label>
-                            <div className="border text-white border-gray-300 dark:border-gray-600 rounded-md overflow-hidden w-full">
-                                <ReactQuill
-                                    theme="snow"
-                                    value={formData.content}
-                                    onChange={handleContentChange}
-                                    placeholder="Write your blog content here..."
-                                    className="h-[30rem] w-full bg-gray-700 text-white placeholder:text-gray-200"
-                                    modules={{
-                                        toolbar: [
-                                            [
-                                                {
-                                                    header: [
-                                                        1,
-                                                        2,
-                                                        3,
-                                                        4,
-                                                        5,
-                                                        6,
-                                                        false,
-                                                    ],
-                                                },
-                                            ],
-                                            [
-                                                "bold",
-                                                "italic",
-                                                "underline",
-                                                "strike",
-                                            ],
-                                            [
-                                                { list: "ordered" },
-                                                { list: "bullet" },
-                                            ],
-                                            ["blockquote", "code-block"],
-                                            [{ color: [] }, { background: [] }],
-                                            ["link", "image"],
-                                            ["clean"],
-                                        ],
-                                    }}
+                            {/* Publication Date */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="published_at"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Publication Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="published_at"
+                                    name="published_at"
+                                    value={formData.published_at}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white max-w-xs text-black"
                                 />
                             </div>
-                        </div>
-                    </div>
 
-                    {/* Submit Button */}
-                    <div className="flex justify-end space-x-4 pt-4 border-t">
-                        <button
-                            type="button"
-                            onClick={() => router.back()}
-                            className="px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
-                        >
-                            {loading ? "Creating..." : "Create Blog Post"}
-                        </button>
-                    </div>
-                </form>
+                            {/* Cover Image Section */}
+                            <div className="space-y-4">
+                                <label className="block text-sm font-semibold text-gray-700 uppercase tracking-wide">
+                                    Cover Image
+                                </label>
+                                <div className="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-200 hover:border-blue-300 transition-colors duration-200">
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                Image URL
+                                            </label>
+                                            <input
+                                                type="url"
+                                                id="coverImage"
+                                                name="coverImage"
+                                                value={formData.coverImage}
+                                                onChange={handleChange}
+                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-white text-black"
+                                                placeholder="https://example.com/image.jpg"
+                                                disabled={!!imageFile}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Image Preview */}
+                                    {imagePreview && (
+                                        <div className="mt-6">
+                                            <p className="text-sm font-medium text-gray-700 mb-3">
+                                                Preview:
+                                            </p>
+                                            <div className="relative h-48 w-full max-w-md border-2 border-gray-200 rounded-xl overflow-hidden bg-white">
+                                                <Image
+                                                    src={imagePreview}
+                                                    alt="Cover image preview"
+                                                    fill
+                                                    style={{
+                                                        objectFit: "cover",
+                                                    }}
+                                                />
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setImagePreview(null);
+                                                    setImageFile(null);
+                                                    if (fileInputRef.current)
+                                                        fileInputRef.current.value =
+                                                            "";
+                                                }}
+                                                className="mt-3 text-sm text-red-600 hover:text-red-800 font-medium transition-colors duration-200"
+                                            >
+                                                Remove image
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Short Description */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="shortDescription"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Short Description
+                                </label>
+                                <textarea
+                                    id="shortDescription"
+                                    name="shortDescription"
+                                    value={formData.shortDescription}
+                                    onChange={handleChange}
+                                    required
+                                    rows={4}
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white resize-none text-black"
+                                    placeholder="Write a compelling summary that will make readers want to read your full post..."
+                                />
+                            </div>
+
+                            {/* Content Editor */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="content"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Blog Content
+                                </label>
+                                <div className="border-2 border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                                    <ReactQuill
+                                        theme="snow"
+                                        value={formData.content}
+                                        onChange={handleContentChange}
+                                        style={{ height: "400px" }} 
+                                        placeholder="Start writing your amazing blog content here..."
+                                        className="min-h-[400px] text-gray-800"
+                                        modules={{
+                                            toolbar: [
+                                                [
+                                                    {
+                                                        header: [
+                                                            1,
+                                                            2,
+                                                            3,
+                                                            4,
+                                                            5,
+                                                            6,
+                                                            false,
+                                                        ],
+                                                    },
+                                                ],
+                                                [
+                                                    "bold",
+                                                    "italic",
+                                                    "underline",
+                                                    "strike",
+                                                ],
+                                                [
+                                                    { list: "ordered" },
+                                                    { list: "bullet" },
+                                                ],
+                                                ["blockquote", "code-block"],
+                                                [
+                                                    { color: [] },
+                                                    { background: [] },
+                                                ],
+                                                ["link", "image"],
+                                                ["clean"],
+                                            ],
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row justify-end gap-4 pt-8 mt-8 border-t border-gray-200">
+                            <button
+                                type="button"
+                                onClick={() => router.back()}
+                                className="px-8 py-3 border-2 border-gray-300 rounded-xl text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
+                            >
+                                {loading ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                        Creating...
+                                    </div>
+                                ) : (
+                                    "Create Blog Post"
+                                )}
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

@@ -55,3 +55,83 @@
 .ql-toolbar .ql-picker-item {
     color: white !important;
 }
+
+
+
+@layer components {
+    .editor p {
+        @apply  mt-2 font-normal leading-6 tracking-wide text-zinc-400 sm:text-lg;
+    }
+
+    .editor h1 {
+        @apply mb-4 mt-2 py-4 text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl;
+    }
+
+    .editor h2 {
+        @apply mb-4 mt-2 py-4 text-2xl font-bold text-black dark:text-white sm:text-3xl;
+    }
+
+    .editor h3 {
+        @apply mb-2 mt-2 py-4 text-xl font-bold text-black dark:text-white sm:text-2xl;
+    }
+
+    .editor h4 {
+        @apply mb-2 mt-2 text-lg text-black dark:text-white sm:text-xl;
+    }
+
+    .editor h5 {
+        @apply mb-2 mt-2 text-lg text-gray-600 dark:text-white;
+    }
+
+    .editor a {
+        @apply font-semibold text-[#DF3226];
+    }
+
+    .editor img {
+        @apply my-4 h-[30rem] w-full rounded-lg object-cover;
+    }
+
+    .editor ul {
+        @apply  mb-2 ml-6 mt-2 list-inside list-disc text-gray-600;
+    }
+
+    .editor ul li {
+        @apply  py-2 text-gray-800 sm:text-lg;
+    }
+
+    .editor ol {
+        @apply  mb-2 ml-6 mt-2 list-inside list-decimal text-gray-600;
+    }
+
+    .editor ol li {
+        @apply  py-2 pl-2 text-gray-800 sm:text-lg;
+    }
+
+    .editor table th {
+        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-600 sm:pl-0;
+    }
+
+    .editor table tbody tr {
+        @apply  even:bg-zinc-600 flex justify-between text-base hover:bg-gray-100 dark:hover:bg-zinc-900 sm:text-lg xl:px-6;
+    }
+
+    .editor .dh {
+        @apply  mb-4 mt-2 text-2xl font-bold text-gray-600;
+    }
+
+    .editor table {
+        @apply min-w-full divide-y divide-gray-200 dark:divide-[#282828];
+    }
+
+    .editor th {
+        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-600 sm:pl-0;
+    }
+
+    .editor tbody {
+        @apply divide-y divide-gray-200 dark:divide-[#282828];
+    }
+
+    .editor td {
+        @apply  whitespace-nowrap px-3 py-4 text-gray-600 sm:table-cell;
+    }
+}

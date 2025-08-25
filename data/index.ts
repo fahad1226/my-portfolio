@@ -1,7 +1,8 @@
 export const navItems = [
-    { name: "About", link: "#about" },
+    { name: "Home", link: "/" },
     { name: "Projects", link: "#projects" },
-    { name: "Testimonials", link: "#testimonials" },
+    { name: "Blog", link: "/blog" },
+    { name: "Resume", link: "/resume" },
     { name: "Contact", link: "#contact" },
 ];
 
@@ -73,16 +74,16 @@ export const projects = [
     {
         id: 1,
         title: "Baling Wire Direct",
-        des: "Explore the wonders of our solar system with this captivating 3D simulation of the planets using Three.js.",
-        img: "/p1.svg",
+        des: "I redesigned and redeveloped the whole frontend of this e-commerce application from scratch, achieving over 70% improvement in performance metrics and significant SEO optimizations as well as better user experience.",
+        img: "/baling-wire-direct.png",
         iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
-        link: "/ui.earth.com",
+        link: "https://www.balingwiredirect.com/",
     },
     {
         id: 2,
-        title: "Yoom - Video Conferencing App",
-        des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-        img: "/p2.svg",
+        title: "Never In Reverse",
+        des: "I designed and developed this podcast website from figma to production using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
+        img: "/never-in-reverse.png",
         iconLists: [
             "/next.svg",
             "/tail.svg",
@@ -90,21 +91,21 @@ export const projects = [
             "/stream.svg",
             "/c.svg",
         ],
-        link: "/ui.yoom.com",
+        link: "https://neverinreverse.com/",
     },
     {
         id: 3,
-        title: "AI Image SaaS - Canva Application",
-        des: "A REAL Software-as-a-Service app with AI features and a payments and credits system using the latest tech stack.",
-        img: "/p3.svg",
+        title: "Fluent Conveyors",
+        des: "I designed and developed this website from scratch using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
+        img: "/fluent-conveyors.png",
         iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-        link: "/ui.aiimg.com",
+        link: "https://www.fluentconveyors.com/",
     },
     {
         id: 4,
-        title: "Animated Apple Iphone 3D Website",
-        des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-        img: "/p4.svg",
+        title: "Recycling Baler",
+        des: "I collaborated with a team of 3 to design and develop this website using typescript, nextjs, tailwindcss, framer motion and I've used Laravel to build the backend.",
+        img: "/recycling-baler.png",
         iconLists: [
             "/next.svg",
             "/tail.svg",
@@ -116,9 +117,9 @@ export const projects = [
     },
     {
         id: 5,
-        title: "Animated Apple Iphone 3D Website",
-        des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-        img: "/p4.svg",
+        title: "Today App",
+        des: "I colborated with one of my friends to design and develop this app using Laravel, VueJS, TailwindCSS, MySQL, AWS, Docker and more.",
+        img: "/today-app.png",
         iconLists: [
             "/next.svg",
             "/tail.svg",
@@ -126,13 +127,13 @@ export const projects = [
             "/three.svg",
             "/gsap.svg",
         ],
-        link: "/ui.apple.com",
+        link: "https://github.com/fahad1226/today-app",
     },
     {
         id: 6,
-        title: "Animated Apple Iphone 3D Website",
-        des: "Recreated the Apple iPhone 15 Pro website, combining GSAP animations and Three.js 3D effects..",
-        img: "/p4.svg",
+        title: "Track My Subscription",
+        des: "I designed and developed this website from scratch using typescript, nextjs, tailwindcss, framer motion, aws, cursor and more.",
+        img: "/track-my-subscription.png",
         iconLists: [
             "/next.svg",
             "/tail.svg",
@@ -140,7 +141,7 @@ export const projects = [
             "/three.svg",
             "/gsap.svg",
         ],
-        link: "/ui.apple.com",
+        link: "https://github.com/fahad1226/track-my-subscription",
     },
 ];
 
