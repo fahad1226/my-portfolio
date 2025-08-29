@@ -1,0 +1,26 @@
+How to deploy the app to the cpanel
+
+
+
+1. Activate your Node.js environment in terminal:
+    - open the terminal in the cpanel and do the following
+    - source /home/fahadbin/nodevenv/portfolio-code/20/bin/activate && cd /home/fahadbin/portfolio-code
+
+2. Optionally we can build the site thourgh the terminal but for the shared server ram allocation issue we might get errors. (UnhandledRejection [RangeError: WebAssembly.instantiate(): Out of memory]) That is why it is always a good idea to build the site locally and deploy the .next directory into the server.
+
+3. If we want to edit any files: package.json or next config for example:
+    - open the terminal
+    - nano package.json
+    - edit the file
+    - cmmand + o to save the file
+    - cmmd + x to get out the nano
+
+
+
+3. if we get any chokider issue or any kind of npm issue we have to do the followings:
+
+    - rm -rf node_modules
+    - rm -rf /home/fahadbin/nodevenv/portfolio-code/20/lib/node_modules/chokidar (removing the broken package)
+    - rm -f package-lock.json
+    - npm cache clean --force
+    - npm install

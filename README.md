@@ -44,3 +44,6 @@ With 4 years of experience in Software Engineering, I specialize in building hig
 ---
 
 _"Building high-performance applications at lightning speed"_
+
+
+
