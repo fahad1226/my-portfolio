@@ -3,19 +3,20 @@
 import {
     IconChartBar,
     IconHome,
+    IconLogout,
     IconMenu,
     IconSettings,
-    IconUser,
     IconX,
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { auth } from "@/lib/firebase";
+import { signOut, onAuthStateChanged, User } from "firebase/auth";
 
 const navItems = [
     { name: "Dashboard", href: "/console", icon: IconHome },
     { name: "Analytics", href: "/console/analytics", icon: IconChartBar },
-    { name: "Users", href: "/console/users", icon: IconUser },
     { name: "Settings", href: "/console/settings", icon: IconSettings },
 ];
 
@@ -23,6 +24,37 @@ function ConsoleNavigation() {
     const router = useRouter();
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            setIsLoggingOut(true);
+            await signOut(auth);
+            // Redirect to login page after successful logout
+            router.push("/console/login");
+        } catch (error) {
+            console.error("Error logging out:", error);
+            // You might want to show a toast notification here
+        } finally {
+            setIsLoggingOut(false);
+        }
+    };
+
+    // Don't render navigation if still loading
+    if (loading) {
+        return null;
+    }
 
     return (
         <nav className="bg-gray-800 text-white">
@@ -58,6 +90,27 @@ function ConsoleNavigation() {
                                         </Link>
                                     );
                                 })}
+
+                                {/* Logout Button - Only show when user is logged in */}
+                                {user && (
+                                    <button
+                                        onClick={handleLogout}
+                                        disabled={isLoggingOut}
+                                        className="px-3 py-2 rounded-md text-sm font-medium flex items-center text-gray-300 hover:bg-gray-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        <IconLogout
+                                            className={`h-5 w-5 mr-2 ${
+                                                isLoggingOut
+                                                    ? "animate-spin"
+                                                    : ""
+                                            }`}
+                                            aria-hidden="true"
+                                        />
+                                        {isLoggingOut
+                                            ? "Logging out..."
+                                            : "Logout"}
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -117,6 +170,23 @@ function ConsoleNavigation() {
                             </Link>
                         );
                     })}
+
+                    {/* Mobile Logout Button - Only show when user is logged in */}
+                    {user && (
+                        <button
+                            onClick={handleLogout}
+                            disabled={isLoggingOut}
+                            className="w-full px-3 py-2 rounded-md text-base font-medium flex items-center text-gray-300 hover:bg-gray-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            <IconLogout
+                                className={`h-5 w-5 mr-2 ${
+                                    isLoggingOut ? "animate-spin" : ""
+                                }`}
+                                aria-hidden="true"
+                            />
+                            {isLoggingOut ? "Logging out..." : "Logout"}
+                        </button>
+                    )}
                 </div>
             </div>
         </nav>

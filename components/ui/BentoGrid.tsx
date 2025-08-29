@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { IoMailOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
-import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
 
 const GridGlobe = dynamic(
@@ -59,7 +57,7 @@ export const BentoGridItem = ({
     spareImg?: string;
 }) => {
     const leftLists = ["Typescript", "ReactJS", "NextJS", "TailwindCSS"];
-    const rightLists = ["Docker", "Web Vitals", "GraphQL", "Clean Code"];
+    const rightLists = ["Docker", "Web Vitals", "Cursor", "Clean Code"];
 
     return (
         <div
@@ -83,11 +81,11 @@ export const BentoGridItem = ({
                         <Image
                             src={img}
                             alt={img}
-                            width={220}
-                            height={220}
+                            width={500}
+                            height={500}
                             className={cn(
                                 imgClassName,
-                                "object-cover object-center "
+                                "object-cover object-center w-full h-full opacity-30 brightness-90 bg-blend-overlay"
                             )}
                         />
                     )}

@@ -60,10 +60,10 @@ export default async function HomePage() {
     const blogs = await getDocs(collection(db, "articles"));
     const articles = blogs.docs.map((doc) => doc.data() as ArticleTypes);
     return (
-        <div className="relative flex justify-center items-center flex-col scroll-smooth overflow-hidden mx-auto sm:px-10">
+        <div className="relative flex justify-center items-center flex-col scroll-smooth overflow-hidden">
+            <FloatingNav navItems={navItems} />
+            <MyHeroSection />
             <div className="container mx-auto w-full px-4 sm:px-6">
-                <FloatingNav navItems={navItems} />
-                <MyHeroSection />
                 <Grid />
                 <MyApproach />
                 <RecentProjects />

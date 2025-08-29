@@ -5,9 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "node server.js",
-        "lint": "next lint",
-        "deploy": "vercel --prod"
+        "start": "NODE_ENV=production node server.js"
     },
     "dependencies": {
         "@react-three/drei": "^9.105.4",

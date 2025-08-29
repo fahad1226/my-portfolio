@@ -1,6 +1,7 @@
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import BlogList, { BlogDataType } from "../components/BlogList";
+import ConsoleNavigation from "../components/ConsoleNavigation";
 
 async function getBlogs() {
     const blogs = await getDocs(collection(db, "articles"));
@@ -12,6 +13,7 @@ async function BlogListPage() {
 
     return (
         <>
+            <ConsoleNavigation />
             <BlogList blogs={blogs} />
         </>
     );

@@ -15,7 +15,7 @@ export default function MyHeroSection() {
                     />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-b z-20 from-transparent via-transparent to-black-100" />
+                <div className="absolute inset-0 bg-gradient-to-b z-20 from-transparent via-transparent to-black" />
 
                 {/* Name heading - responsive text sizes */}
                 <div className="absolute top-[15%] w-full px-4">

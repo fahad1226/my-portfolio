@@ -14,7 +14,7 @@ export const gridItems = [
         className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
         imgClassName: "w-full h-full",
         titleClassName: "justify-end",
-        img: "/b1.svg",
+        img: "/desktop-2.webp",
         spareImg: "",
     },
     {
@@ -148,24 +148,15 @@ export const projects = [
 export const workExperience = [
     {
         id: 1,
-        title: "Full Stack Developer Intern",
-        company: "Premier University",
-        desc: "Collaborated with university professors to develop a web-based platform that streamlines thesis supervision and project management for final year students. The system automates workflow, enhances communication, and improves tracking of student progress.",
+        title: "Lead Software Engineer - Frontend",
+        company: "Fluent Conveyors",
+        desc: "Led development of core e-commerce projects, achieving significant performance improvements and SEO enhancements. Implemented scalable solutions that increased customer orders and achieved #1 Google ranking for key terms. Collaborated across teams to integrate frontend and backend systems while leveraging AI to accelerate development cycles and improve code quality.",
         className: "md:col-span-2",
-        thumbnail: "/exp1.svg",
-        companyLink: "https://puc.ac.bd/",
+        thumbnail: "/exp4.svg",
+        companyLink: "https://www.fluentconveyors.com/",
     },
     {
         id: 2,
-        title: "Frontend Developer",
-        company: "Developer Experience Hub",
-        desc: "Developed and maintained features for large-scale applications using Vue.js and Nuxt.js. Implemented 10+ key features including messaging, search, and feeds for CXBrainstorm platform. Improved application performance and fixed bugs for LiveCX platform while following scrum methodologies.",
-        className: "md:col-span-2", // change to md:col-span-2
-        thumbnail: "/exp2.svg",
-        companyLink: "https://devxhub.com/",
-    },
-    {
-        id: 3,
         title: "Software Engineer",
         company: "Anveen Private Limited",
         desc: "Designed and implemented scalable RESTful APIs using Laravel while developing ReactJS components. Led implementation of SPA experience within WordPress using Vue.js and microservices architecture. Gained leadership experience managing a small team using Scrum/Agile methodologies. Executed comprehensive testing including unit and E2E tests for frontend and backend.",
@@ -174,13 +165,22 @@ export const workExperience = [
         companyLink: "https://anveen.com/",
     },
     {
+        id: 3,
+        title: "Junior Frontend Developer",
+        company: "Developer Experience Hub",
+        desc: "Developed and maintained features for large-scale applications using React and NextJS. Implemented 10+ key features including messaging, search, feeds and many more for CXBrainstorm platform. Improved application performance and fixed bugs for LiveCX platform while following scrum methodologies.",
+        className: "md:col-span-2", // change to md:col-span-2
+        thumbnail: "/exp2.svg",
+        companyLink: "https://devxhub.com/",
+    },
+    {
         id: 4,
-        title: "Lead Software Engineer",
-        company: "Fluent Conveyors",
-        desc: "Led development of core e-commerce projects, achieving significant performance improvements through Core Web Vitals optimization and SEO enhancements. Implemented scalable solutions that increased customer orders and achieved #1 Google ranking for key terms. Collaborated across teams to integrate frontend and backend systems while leveraging AI to accelerate development cycles and improve code quality.",
+        title: "Full Stack Developer Intern",
+        company: "Premier University",
+        desc: "Collaborated with university professors to develop a web-based platform that streamlines thesis supervision and project management for final year students. The system automates workflow, enhances communication, and improves tracking of student progress.",
         className: "md:col-span-2",
-        thumbnail: "/exp4.svg",
-        companyLink: "https://www.fluentconveyors.com/",
+        thumbnail: "/exp1.svg",
+        companyLink: "https://puc.ac.bd/",
     },
 ];
 
