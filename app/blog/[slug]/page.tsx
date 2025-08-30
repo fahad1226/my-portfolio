@@ -35,7 +35,7 @@ export async function generateMetadata({
     }
 
     return {
-        title: `${article.title} | Fahad Bin Munir`,
+        title: `${article.title} | Fahad Bin Munir - Software Engineer`,
         description: article.shortDescription,
         metadataBase: new URL("https://fahadbinmunir.com"),
         keywords: [

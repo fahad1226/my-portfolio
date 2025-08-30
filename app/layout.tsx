@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import { Fira_Sans } from "next/font/google";
-
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "./provider";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { navItems } from "@/data";
 
 const firaSans = Fira_Sans({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-    title: "Fahad Bin Munir | Another Software Engineer",
-    description:
-        "I am a passionate software engineer with a strong background in web development. I love to learn and explore new technologies.",
-};
+// Google Tag Manager ID - centralized for easy management
+const GTM_ID = "GTM-TVTG8GR3";
 
 export default function RootLayout({
     children,
@@ -24,31 +18,32 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" dir="ltr">
             <head>
-                {/* Google Tag Manager */}
-                <Script
-                    id="google-tag-manager"
-                    dangerouslySetInnerHTML={{
-                        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                        })(window,document,'script','dataLayer','GTM-TVTG8GR3');`,
-                    }}
+                {/* Charset declaration - must be the first element in head */}
+                <meta charSet="utf-8" />
+
+                {/* Viewport meta tag for responsive design */}
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
                 />
                 <link rel="icon" href="/favicon.ico" sizes="any" />
+
+                <meta name="robots" content="index, follow" />
             </head>
             <body className={firaSans.className}>
-                {/* Google Tag Manager (noscript) */}
+                {/* Google Tag Manager (noscript) - Must be placed immediately after opening <body> tag */}
                 <noscript>
                     <iframe
-                        src="https://www.googletagmanager.com/ns.html?id=GTM-TVTG8GR3"
+                        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
                         height="0"
                         width="0"
                         style={{ display: "none", visibility: "hidden" }}
-                    ></iframe>
+                        title="Google Tag Manager"
+                    />
                 </noscript>
+
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
@@ -57,6 +52,21 @@ export default function RootLayout({
                 >
                     <main>{children}</main>
                 </ThemeProvider>
+
+                {/* Google Tag Manager (script) - Loaded after page content for better performance */}
+                <Script
+                    id="google-tag-manager"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','${GTM_ID}');
+                        `,
+                    }}
+                />
             </body>
         </html>
     );

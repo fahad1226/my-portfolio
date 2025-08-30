@@ -17,7 +17,7 @@ import MyResume from "./components/my-resume";
 export const metadata: Metadata = {
     title: "Fahad Bin Munir | Software Engineer | Expert in TypeScript, NextJS, and React | Web UX & Performance Specialist",
     description:
-        "Fahad Bin Munir is a seasoned software engineer with expertise in TypeScript, NextJS, and React. He specializes in enhancing web user experience and performance.",
+        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",

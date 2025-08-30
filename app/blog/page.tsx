@@ -9,9 +9,9 @@ import { ArticleTypes } from "../page";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-    title: "Blog | Fahad Bin Munir",
+    title: "Blog | Fahad Bin Munir - Software Engineer",
     description:
-        "Fahad Bin Munir is a seasoned software engineer with expertise in TypeScript, NextJS, and React. He specializes in enhancing web user experience and performance.",
+        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
