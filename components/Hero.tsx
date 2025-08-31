@@ -11,9 +11,7 @@ export default function MyHeroSection() {
                         className="object-contain h-full w-full"
                         width={800}
                         height={800}
-                        fetchPriority="high"
-                        priority
-                        quality={80}
+                        unoptimized
                     />
                 </div>
 
