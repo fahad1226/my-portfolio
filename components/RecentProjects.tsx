@@ -19,10 +19,7 @@ const RecentProjects = () => {
                         className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
                         key={item.id}
                     >
-                        <PinContainer
-                            title="Fahad Bin Munir Completed Projects"
-                            href="https://github.com/fahad1226"
-                        >
+                        <PinContainer title="Fahad Bin Munir Completed Projects">
                             <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
                                 <div
                                     className="relative w-full h-full overflow-hidden lg:common-border-radius"
@@ -31,22 +28,22 @@ const RecentProjects = () => {
                                     <Image
                                         src="/bg.png"
                                         alt="bgimg"
-                                        width={1000}
-                                        height={1000}
+                                        width={800}
+                                        height={800}
                                     />
                                 </div>
                                 <Image
                                     src={item.img}
                                     alt="cover"
-                                    width={1000}
-                                    height={1000}
+                                    width={800}
+                                    height={800}
                                     className="z-10 absolute bottom-0 rotate-6"
                                 />
                             </div>
 
-                            <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+                            <h3 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
                                 {item.title}
-                            </h1>
+                            </h3>
 
                             <p
                                 title={item.des}
@@ -74,8 +71,8 @@ const RecentProjects = () => {
                                             <Image
                                                 src={icon}
                                                 alt="icon5"
-                                                width={1000}
-                                                height={1000}
+                                                width={200}
+                                                height={200}
                                                 className="p-2"
                                             />
                                         </div>

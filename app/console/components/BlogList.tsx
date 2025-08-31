@@ -1,4 +1,8 @@
+"use client";
+
 import { show_data } from "@/lib/utils";
+import { db } from "@/lib/firebase";
+import { doc, deleteDoc, updateDoc, deleteField } from "firebase/firestore";
 import Image from "next/image";
 import {
     IconEye,
@@ -9,6 +13,7 @@ import {
     IconPlus,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import { useState } from "react";
 
 export interface BlogDataType {
     id: string;
@@ -22,6 +27,46 @@ export interface BlogDataType {
 }
 
 export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
+    const [deletingBlogId, setDeletingBlogId] = useState<string | null>(null);
+    const [localBlogs, setLocalBlogs] = useState<BlogDataType[]>(blogs);
+
+    const handleDeleteBlog = async (blogId: string) => {
+        console.log("Deleting blog post:", blogId);
+
+        if (
+            !confirm(
+                "Are you sure you want to delete this blog post? This action cannot be undone."
+            )
+        ) {
+            return;
+        }
+
+        setDeletingBlogId(blogId);
+
+        try {
+            // Create a reference to the document using the blogId
+            const blogRef = doc(db, "articles", blogId);
+
+            // Delete from Firebase
+            await deleteDoc(blogRef);
+
+           
+
+            // Update local state to remove the deleted blog
+            setLocalBlogs((prevBlogs) =>
+                prevBlogs.filter((blog) => blog.id !== blogId)
+            );
+
+            // Show success message (you can implement a toast notification here)
+            console.log("Blog deleted successfully");
+        } catch (error) {
+            console.error("Error deleting blog:", error);
+            alert("Failed to delete blog. Please try again.");
+        } finally {
+            setDeletingBlogId(null);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
             <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -55,7 +100,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                     Total Posts
                                 </p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    {blogs.length}
+                                    {localBlogs.length}
                                 </p>
                             </div>
                             <div className="p-3 bg-blue-100 rounded-xl">
@@ -70,7 +115,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                     Published
                                 </p>
                                 <p className="text-2xl font-bold text-gray-900">
-                                    {blogs.length}
+                                    {localBlogs.length}
                                 </p>
                             </div>
                             <div className="p-3 bg-green-100 rounded-xl">
@@ -101,7 +146,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                 </p>
                                 <p className="text-2xl font-bold text-gray-900">
                                     {
-                                        blogs.filter((blog) => {
+                                        localBlogs.filter((blog) => {
                                             const blogDate = new Date(
                                                 blog.published_at
                                             );
@@ -124,7 +169,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                 </div>
 
                 {/* Blog Posts Grid */}
-                {blogs.length === 0 ? (
+                {localBlogs.length === 0 ? (
                     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-12 text-center">
                         <div className="max-w-md mx-auto">
                             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -148,7 +193,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                        {blogs.map((blog) => (
+                        {localBlogs.map((blog) => (
                             <div
                                 key={blog.id}
                                 className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group"
@@ -208,8 +253,24 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                         <button className="p-2.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200">
                                             <IconEdit className="w-5 h-5" />
                                         </button>
-                                        <button className="p-2.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
-                                            <IconTrash className="w-5 h-5" />
+                                        <button
+                                            onClick={() =>
+                                                handleDeleteBlog(blog.id)
+                                            }
+                                            disabled={
+                                                deletingBlogId === blog.id
+                                            }
+                                            className={`p-2.5 rounded-xl transition-all duration-200 ${
+                                                deletingBlogId === blog.id
+                                                    ? "text-gray-300 cursor-not-allowed"
+                                                    : "text-gray-400 hover:text-red-600 hover:bg-red-50"
+                                            }`}
+                                        >
+                                            {deletingBlogId === blog.id ? (
+                                                <div className="w-5 h-5 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
+                                            ) : (
+                                                <IconTrash className="w-5 h-5" />
+                                            )}
                                         </button>
                                     </div>
                                 </div>

@@ -9,9 +9,11 @@ export default function MyHeroSection() {
                         src="/images/fahad_bin_munir_profile.webp"
                         alt="Fahad Bin Munir | Web Performance Specialist | NextJS, ReactJS, TypeScript"
                         className="object-contain h-full w-full"
-                        unoptimized
-                        width={1920}
-                        height={1080}
+                        width={800}
+                        height={800}
+                        fetchPriority="high"
+                        priority
+                        quality={80}
                     />
                 </div>
 
