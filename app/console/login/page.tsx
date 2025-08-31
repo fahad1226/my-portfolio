@@ -62,7 +62,7 @@ function ConsoleLogin() {
     return (
         <>
             <ConsoleNavigation />
-            <div className="min-h-screen relative flex items-center justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+            <div className="min-h-screen relative flex items-center justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] overflow-hidden">
                 <div className="relative z-10 w-full max-w-md mx-auto p-6">
                     <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-2xl p-8">
                         {/* Header */}
