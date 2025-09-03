@@ -34,68 +34,94 @@ export function MyBlogList({
 
 export function CardDemo({ article }: { article: ArticleTypes }) {
     return (
-        <div className="max-w-full w-full group/card relative">
-            <div
-                className={cn(
-                    "cursor-pointer overflow-hidden relative card h-96 rounded-xl shadow-2xl flex flex-col justify-between p-6",
-                    "bg-[url(/images/default-blog-image.avif)] bg-cover bg-center transition-all duration-300",
-                    "hover:scale-[1.02] hover:shadow-3xl"
-                )}
-            >
-                {/* Gradient overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        <div className="group relative z-20">
+            <Link href={`/blog/${article.slug}`} className="block">
+                <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-blue-500/20">
+                    {/* Background Image Container */}
+                    <div className="relative h-72 w-full overflow-hidden">
+                        <Image
+                            src={
+                                article.coverImage ||
+                                "/images/default-blog-image.avif"
+                            }
+                            alt="Blog post background"
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                            priority={false}
+                        />
 
-                {/* Author section */}
-                <div className="flex flex-row items-center space-x-4 relative z-20">
-                    <Image
-                        height="100"
-                        width="100"
-                        alt="Avatar"
-                        src="/images/fahad.jpeg"
-                        className="h-12 w-12 rounded-full border-2 border-white/20 object-cover shadow-lg"
-                    />
-                    <div className="flex flex-col">
-                        <p className="font-semibold text-base text-white">
-                            Fahad Bin Munir
-                        </p>
-                        <p className="text-sm text-gray-300 font-medium">
-                            {article.duration} minutes read
-                        </p>
+                        {/* Overlay with better gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+                        {/* Category/Tag Badge */}
+                        <div className="absolute top-4 right-4 z-20">
+                            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30 capitalize backdrop-blur-sm">
+                                {article.blogCategory || "Blog Post"}
+                            </span>
+                        </div>
                     </div>
+
+                    {/* Content Section */}
+                    <div className="p-6 space-y-4">
+                        {/* Title */}
+                        <h3 className="font-bold text-xl text-white leading-tight line-clamp-2 group-hover:text-blue-300 transition-colors duration-300">
+                            {article.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-sm text-gray-300 leading-relaxed line-clamp-3 opacity-90">
+                            {article.shortDescription}
+                        </p>
+
+                        {/* Author and Meta Info */}
+                        <div className="flex items-center justify-between pt-2">
+                            <div className="flex items-center space-x-3">
+                                <div className="relative">
+                                    <Image
+                                        height="40"
+                                        width="40"
+                                        alt="Avatar"
+                                        src="/images/fahad.jpeg"
+                                        className="h-10 w-10 rounded-full border-2 border-white/20 object-cover shadow-lg"
+                                    />
+                                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+                                </div>
+                                <div className="flex flex-col">
+                                    <p className="font-semibold text-sm text-white">
+                                        Fahad Bin Munir
+                                    </p>
+                                    <p className="text-xs text-gray-400">
+                                        {article.duration}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Read More Button */}
+                            <div className="flex items-center space-x-2 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                                <span className="text-sm font-medium">
+                                    Read
+                                </span>
+                                <svg
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Hover Effect Border */}
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
-
-                {/* Content section */}
-                <Link
-                    href={`/blog/${article.slug}`}
-                    className="relative z-20 space-y-4 block"
-                >
-                    <h3 className="font-bold text-xl md:text-2xl text-white leading-tight line-clamp-1">
-                        {article.title}
-                    </h3>
-                    <p className="font-normal text-sm text-gray-200 leading-relaxed line-clamp-2">
-                        {article.shortDescription}
-                    </p>
-
-                    <div className="flex items-center space-x-2 pt-2">
-                        <span className="brand-color font-medium text-sm">
-                            Read more
-                        </span>
-                        <svg
-                            className="w-4 h-4 brand-color transition-transform group-hover/card:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </div>
-                </Link>
-            </div>
+            </Link>
         </div>
     );
 }

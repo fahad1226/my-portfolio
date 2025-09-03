@@ -4,11 +4,8 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// Force dynamic rendering - disable static generation
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 // Import the ArticleTypes interface
 export interface ArticleTypes {
@@ -16,6 +13,7 @@ export interface ArticleTypes {
     title: string;
     slug: string;
     shortDescription: string;
+    blogCategory: string;
     content: string;
     author: string;
     duration: string;
@@ -128,43 +126,94 @@ export default async function SingleBlogPage({
     return (
         <>
             <div className="relative w-full">
-                {/* Hero Section with Cover Image */}
-                <div className="relative h-[60vh] w-full">
-                    <div className="absolute inset-0 flex items-center justify-center">
+                {/* Hero Section with Cover Image Background */}
+                <div className="relative h-[70vh] w-full overflow-hidden">
+                    {/* Background Cover Image */}
+                    {article.coverImage && (
+                        <div className="absolute inset-0">
+                            <Image
+                                src={article.coverImage}
+                                alt={article.title}
+                                fill
+                                className="object-cover"
+                                priority={true}
+                            />
+                            {/* Dark overlay for better text readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50" />
+                        </div>
+                    )}
+
+                    {/* Fallback background if no cover image */}
+                    {!article.coverImage && (
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/80 to-indigo-900/90" />
+                    )}
+
+                    {/* Hero Content */}
+                    <div className="relative z-10 flex items-center justify-center h-full">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-                            <p className="text-base font-semibold brand-color">
-                                Introducing
-                            </p>
-                            <h1 className="mt-2 text-pretty text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                            {/* Category Badge */}
+                            <h3 className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 backdrop-blur-sm mb-6">
+                                {article.blogCategory || "Blog Post"}
+                            </h3>
+
+                            {/* Title */}
+                            <h1 className="text-pretty text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
                                 {article.title}
                             </h1>
-                            <p className="mt-6 mx-auto max-w-2xl text-xl text-gray-300">
+
+                            {/* Description */}
+                            <p className="mt-6 mx-auto max-w-3xl text-xl text-gray-200 leading-relaxed">
                                 {article.shortDescription}
                             </p>
-                            <div className="mt-8 flex items-center justify-center space-x-4">
+
+                            {/* Author and Meta Info */}
+                            <div className="mt-8 flex items-center justify-center space-x-6">
                                 <div className="flex items-center">
-                                    <div className="h-10 w-10 rounded-full overflow-hidden">
-                                        <Image
-                                            src="/images/fahad.jpeg"
-                                            alt="Fahad Bin Munir"
-                                            width={40}
-                                            height={40}
-                                            className="h-full w-full object-cover"
-                                        />
+                                    <div className="relative">
+                                        <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-white/20">
+                                            <Image
+                                                src="/images/fahad.jpeg"
+                                                alt="Fahad Bin Munir"
+                                                width={48}
+                                                height={48}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                                     </div>
-                                    <div className="ml-3 text-left">
-                                        <p className="text-sm font-medium text-white">
+                                    <div className="ml-4 text-left">
+                                        <p className="text-base font-semibold text-white">
                                             Fahad Bin Munir
                                         </p>
-                                        <p className="text-xs text-gray-400">
+                                        <p className="text-sm text-gray-300">
                                             Published on {publishedDate}
                                         </p>
                                     </div>
                                 </div>
-                                <span className="text-gray-500">•</span>
-                                <p className="text-sm text-gray-400">
-                                    {article.duration}
-                                </p>
+
+                                <div className="w-px h-12 bg-white/20"></div>
+
+                                <div className="text-center">
+                                    <p className="text-sm text-gray-300">
+                                        Reading time
+                                    </p>
+                                    <p className="text-lg font-semibold text-white">
+                                        {article.duration}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Scroll indicator */}
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+                        <div className="flex flex-col items-center space-y-2">
+                            <span className="text-sm text-white/60">
+                                Scroll to read
+                            </span>
+                            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+                                <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
                             </div>
                         </div>
                     </div>
@@ -184,20 +233,6 @@ export default async function SingleBlogPage({
                                     }}
                                 />
                             </div>
-
-                            {/* Cover image if available */}
-                            {article.coverImage && (
-                                <figure className="mt-16">
-                                    <div className="relative aspect-video overflow-hidden rounded-xl">
-                                        <Image
-                                            src={article.coverImage}
-                                            alt={article.title}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                </figure>
-                            )}
                         </div>
 
                         {/* Related Articles Section */}
@@ -208,8 +243,9 @@ export default async function SingleBlogPage({
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {relatedBlogs.slice(0, 3).map((blog) => (
-                                        <div
+                                        <Link
                                             key={blog.id}
+                                            href={`/blog/${blog.slug}`}
                                             className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-gray-800/70 transition-all duration-300 border border-gray-800/50 hover:border-gray-700/50 hover:shadow-2xl hover:shadow-indigo-500/10"
                                         >
                                             <div className="relative h-48 overflow-hidden">
@@ -258,7 +294,7 @@ export default async function SingleBlogPage({
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>

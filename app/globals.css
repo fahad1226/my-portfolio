@@ -60,27 +60,27 @@
 
 @layer components {
     .editor p {
-        @apply  mt-2 font-normal leading-6 tracking-wide text-zinc-400 sm:text-lg;
+        @apply  mt-2 font-normal leading-6 tracking-wide text-zinc-200 sm:text-lg;
     }
 
     .editor h1 {
-        @apply mb-4 mt-2 py-4 text-2xl font-bold text-black dark:text-white sm:text-3xl md:text-4xl;
+        @apply mb-4 mt-2 py-4 text-2xl font-bold text-white sm:text-3xl md:text-4xl;
     }
 
     .editor h2 {
-        @apply mb-4 mt-2 py-4 text-2xl font-bold text-black dark:text-white sm:text-3xl;
+        @apply mb-4 mt-2 py-4 text-2xl font-bold text-white sm:text-3xl;
     }
 
     .editor h3 {
-        @apply mb-2 mt-2 py-4 text-xl font-bold text-black dark:text-white sm:text-2xl;
+        @apply mb-2 mt-2 py-4 text-xl font-bold text-white sm:text-2xl;
     }
 
     .editor h4 {
-        @apply mb-2 mt-2 text-lg text-black dark:text-white sm:text-xl;
+        @apply mb-2 mt-2 text-lg text-white sm:text-xl;
     }
 
     .editor h5 {
-        @apply mb-2 mt-2 text-lg text-gray-600 dark:text-white;
+        @apply mb-2 mt-2 text-lg text-gray-300 sm:text-xl;     
     }
 
     .editor a {
@@ -92,46 +92,52 @@
     }
 
     .editor ul {
-        @apply  mb-2 ml-6 mt-2 list-inside list-disc text-gray-600;
+        @apply  mb-2 ml-6 mt-2 list-inside list-disc text-gray-200;
     }
 
     .editor ul li {
-        @apply  py-2 text-gray-800 sm:text-lg;
+        @apply  py-2 text-gray-300 sm:text-lg;
     }
 
     .editor ol {
-        @apply  mb-2 ml-6 mt-2 list-inside list-decimal text-gray-600;
+        @apply  mb-2 ml-6 mt-2 list-inside list-decimal text-gray-300;
     }
 
     .editor ol li {
-        @apply  py-2 pl-2 text-gray-800 sm:text-lg;
+        @apply  py-2 pl-2 text-gray-300 sm:text-lg;
     }
 
     .editor table th {
-        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-600 sm:pl-0;
+        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
     }
 
     .editor table tbody tr {
-        @apply  even:bg-zinc-600 flex justify-between text-base hover:bg-gray-100 dark:hover:bg-zinc-900 sm:text-lg xl:px-6;
+        @apply  even:bg-zinc-600 flex justify-between text-base hover:bg-gray-100 sm:text-lg xl:px-6;
     }
 
     .editor .dh {
-        @apply  mb-4 mt-2 text-2xl font-bold text-gray-600;
+        @apply  mb-4 mt-2 text-2xl font-bold text-gray-300;
     }
 
     .editor table {
-        @apply min-w-full divide-y divide-gray-200 dark:divide-[#282828];
+        @apply min-w-full divide-y divide-gray-200;
     }
 
     .editor th {
-        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-600 sm:pl-0;
+        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
     }
 
     .editor tbody {
-        @apply divide-y divide-gray-200 dark:divide-[#282828];
+        @apply divide-y divide-gray-200;
     }
 
     .editor td {
-        @apply  whitespace-nowrap px-3 py-4 text-gray-600 sm:table-cell;
+        @apply  whitespace-nowrap px-3 py-4 text-gray-300 sm:table-cell;
+    }
+    .editor pre {
+        @apply bg-gray-800 rounded-lg p-4;
+    }
+    .editor code {
+        @apply bg-gray-800 rounded-lg p-2;
     }
 }

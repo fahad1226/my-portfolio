@@ -9,8 +9,8 @@ import { MyBlogList } from "../components/my-blogs";
 import { ArticleTypes } from "../page";
 
 // Force dynamic rendering - disable static generation
-    export const dynamic = "force-dynamic";
-    export const revalidate = 0;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
     title: "Blog | Fahad Bin Munir - Software Engineer",

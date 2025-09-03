@@ -49,6 +49,7 @@ export interface ArticleTypes {
     title: string;
     slug: string;
     shortDescription: string;
+    blogCategory: string;
     content: string;
     author: string;
     duration: string;
