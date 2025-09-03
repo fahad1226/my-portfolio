@@ -1,12 +1,16 @@
+import Footer from "@/components/Footer";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { Metadata } from "next";
 import BlogHeroSection from "../components/blog-hero";
 import { MyBlogList } from "../components/my-blogs";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import { ArticleTypes } from "../page";
-import Footer from "@/components/Footer";
+
+// Force dynamic rendering - disable static generation
+    export const dynamic = "force-dynamic";
+    export const revalidate = 0;
 
 export const metadata: Metadata = {
     title: "Blog | Fahad Bin Munir - Software Engineer",

@@ -6,6 +6,10 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+// Force dynamic rendering - disable static generation
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 // Import the ArticleTypes interface
 export interface ArticleTypes {
     id: string;

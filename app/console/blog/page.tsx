@@ -1,8 +1,12 @@
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { Metadata } from "next";
 import BlogList, { BlogDataType } from "../components/BlogList";
 import ConsoleNavigation from "../components/ConsoleNavigation";
-import { Metadata } from "next";
+
+// Force dynamic rendering - disable static generation
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
     title: "Console Blog List | Fahad Bin Munir",
