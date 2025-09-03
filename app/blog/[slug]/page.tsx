@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
 import { db } from "@/lib/firebase";
@@ -125,14 +126,17 @@ export default async function SingleBlogPage({
 
     return (
         <>
-            <div className="relative w-full">
+            <div className="w-full pt-16 md:pt-0">
                 {/* Hero Section with Cover Image Background */}
                 <div className="relative h-[70vh] w-full overflow-hidden">
                     {/* Background Cover Image */}
                     {article.coverImage && (
                         <div className="absolute inset-0">
                             <Image
-                                src={article.coverImage}
+                                src={
+                                    article.coverImage ||
+                                    "/images/default-blog-image.avif"
+                                }
                                 alt={article.title}
                                 fill
                                 className="object-cover"
@@ -153,25 +157,25 @@ export default async function SingleBlogPage({
                     <div className="relative z-10 flex items-center justify-center h-full">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
                             {/* Category Badge */}
-                            <h3 className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 backdrop-blur-sm mb-6">
+                            <h3 className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-white/10 text-white border border-white/20 capitalize backdrop-blur-sm mb-6">
                                 {article.blogCategory || "Blog Post"}
                             </h3>
 
                             {/* Title */}
-                            <h1 className="text-pretty text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
+                            <h1 className="text-pretty text-3xl sm:text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl leading-tight">
                                 {article.title}
                             </h1>
 
                             {/* Description */}
-                            <p className="mt-6 mx-auto max-w-3xl text-xl text-gray-200 leading-relaxed">
+                            <p className="mt-6 mx-auto max-w-3xl text-lg sm:text-xl text-gray-200 leading-relaxed">
                                 {article.shortDescription}
                             </p>
 
                             {/* Author and Meta Info */}
-                            <div className="mt-8 flex items-center justify-center space-x-6">
+                            <div className="mt-4 sm:mt-8 flex items-center justify-center space-x-6">
                                 <div className="flex items-center">
                                     <div className="relative">
-                                        <div className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-white/20">
+                                        <div className="size-10 sm:size-12 rounded-full overflow-hidden ring-2 ring-white/20">
                                             <Image
                                                 src="/images/fahad.jpeg"
                                                 alt="Fahad Bin Munir"
@@ -186,7 +190,7 @@ export default async function SingleBlogPage({
                                         <p className="text-base font-semibold text-white">
                                             Fahad Bin Munir
                                         </p>
-                                        <p className="text-sm text-gray-300">
+                                        <p className="sm:text-sm text-xs text-gray-300">
                                             Published on {publishedDate}
                                         </p>
                                     </div>
@@ -195,10 +199,10 @@ export default async function SingleBlogPage({
                                 <div className="w-px h-12 bg-white/20"></div>
 
                                 <div className="text-center">
-                                    <p className="text-sm text-gray-300">
+                                    <p className="sm:text-sm text-xs text-gray-300">
                                         Reading time
                                     </p>
-                                    <p className="text-lg font-semibold text-white">
+                                    <p className="sm:text-lg text-base font-semibold text-white">
                                         {article.duration}
                                     </p>
                                 </div>
@@ -207,7 +211,7 @@ export default async function SingleBlogPage({
                     </div>
 
                     {/* Scroll indicator */}
-                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="absolute bottom-0 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10">
                         <div className="flex flex-col items-center space-y-2">
                             <span className="text-sm text-white/60">
                                 Scroll to read
@@ -300,6 +304,12 @@ export default async function SingleBlogPage({
                             </div>
                         )}
                     </div>
+                </div>
+            </div>
+
+            <div className="container mx-auto w-full px-4 sm:px-6 mt-16">
+                <div className="relative">
+                    <Footer />
                 </div>
             </div>
         </>

@@ -50,8 +50,6 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
             // Delete from Firebase
             await deleteDoc(blogRef);
 
-           
-
             // Update local state to remove the deleted blog
             setLocalBlogs((prevBlogs) =>
                 prevBlogs.filter((blog) => blog.id !== blogId)
@@ -230,13 +228,43 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                         <div className="flex items-center gap-1">
                                             <IconCalendar className="w-4 h-4" />
                                             <span>
-                                                {new Date(
-                                                    blog.published_at
-                                                ).toLocaleDateString("en-US", {
-                                                    year: "numeric",
-                                                    month: "short",
-                                                    day: "numeric",
-                                                })}
+                                                {(() => {
+                                                    let date;
+                                                    if (
+                                                        typeof blog.published_at ===
+                                                        "string"
+                                                    ) {
+                                                        date = new Date(
+                                                            blog.published_at
+                                                        );
+                                                    } else if (
+                                                        blog.published_at &&
+                                                        typeof blog.published_at ===
+                                                            "object" &&
+                                                        "seconds" in
+                                                            blog.published_at
+                                                    ) {
+                                                        date = new Date(
+                                                            blog.published_at
+                                                                .seconds * 1000
+                                                        );
+                                                    } else {
+                                                        date = new Date();
+                                                    }
+
+                                                    if (isNaN(date.getTime())) {
+                                                        return "Invalid Date";
+                                                    }
+
+                                                    return date.toLocaleDateString(
+                                                        "en-US",
+                                                        {
+                                                            year: "numeric",
+                                                            month: "short",
+                                                            day: "numeric",
+                                                        }
+                                                    );
+                                                })()}
                                             </span>
                                         </div>
                                         <div className="flex items-center gap-1">
@@ -246,13 +274,13 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                     </div>
 
                                     {/* Action Buttons */}
-                                    <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                                        <button className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                            Read More
-                                        </button>
-                                        <button className="p-2.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200">
-                                            <IconEdit className="w-5 h-5" />
-                                        </button>
+                                    <div className="flex justify-between items-center gap-3 pt-4 border-t border-gray-100">
+                                        <Link
+                                            href={`/console/blog/${blog.slug}`}
+                                            className="p-2.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200"
+                                        >
+                                            <IconEdit className="size-7" />
+                                        </Link>
                                         <button
                                             onClick={() =>
                                                 handleDeleteBlog(blog.id)
@@ -269,7 +297,7 @@ export default function BlogList({ blogs }: { blogs: BlogDataType[] }) {
                                             {deletingBlogId === blog.id ? (
                                                 <div className="w-5 h-5 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"></div>
                                             ) : (
-                                                <IconTrash className="w-5 h-5" />
+                                                <IconTrash className="size-7" />
                                             )}
                                         </button>
                                     </div>

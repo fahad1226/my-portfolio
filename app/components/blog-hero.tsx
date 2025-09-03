@@ -1,4 +1,8 @@
-import { IconBrandFacebook, IconBrandLinkedin, IconBrandX } from "@tabler/icons-react";
+import {
+    IconBrandFacebook,
+    IconBrandLinkedin,
+    IconBrandX,
+} from "@tabler/icons-react";
 import Link from "next/link";
 
 function BlogHeroSection() {
@@ -31,19 +35,19 @@ function BlogHeroSection() {
                             <div className="mt-10 flex items-center justify-center gap-x-4">
                                 <Link
                                     target="_blank"
-                                    href="https://www.linkedin.com/in/fahadbinmunir/"
+                                    href="https://www.linkedin.com/in/fahad-bin-munir-9a17b2183/"
                                 >
                                     <IconBrandLinkedin className="text-white size-8" />
                                 </Link>
                                 <Link
                                     target="_blank"
-                                    href="https://www.linkedin.com/in/fahadbinmunir/"
+                                    href="https://www.facebook.com/fahad.bin.munir.2024/"
                                 >
                                     <IconBrandFacebook className="text-white size-8" />
                                 </Link>
                                 <Link
                                     target="_blank"
-                                    href="https://www.linkedin.com/in/fahadbinmunir/"
+                                    href="https://x.com/FahadBinMunir2"
                                 >
                                     <IconBrandX className="text-white size-8" />
                                 </Link>
