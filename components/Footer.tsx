@@ -1,8 +1,8 @@
-import { FaLocationArrow } from "react-icons/fa6";
 import { socialMedia } from "@/data";
-import MagicButton from "./MagicButton";
 import Image from "next/image";
 import Link from "next/link";
+import { FaLocationArrow } from "react-icons/fa6";
+import MagicButton from "./MagicButton";
 
 export default function Footer() {
     return (
@@ -12,7 +12,7 @@ export default function Footer() {
                 <div className="w-full absolute left-0 bottom-0 z-[1]">
                     <Image
                         src="/footer-grid.svg"
-                        alt="Fahad Bin Munir - a Passionate Software Engineer"
+                        alt="Fahad Bin Munir - a Passionate Software Developer"
                         width={1000}
                         height={1000}
                         className="w-full h-full opacity-50"
@@ -51,7 +51,7 @@ export default function Footer() {
                             >
                                 <Image
                                     src={info.img}
-                                    alt="Fahad Bin Munir - a Passionate Software Engineer"
+                                    alt="Fahad Bin Munir - a Passionate Software Developer"
                                     width={20}
                                     height={20}
                                 />

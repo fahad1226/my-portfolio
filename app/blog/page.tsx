@@ -13,13 +13,13 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-    title: "Blog | Fahad Bin Munir - Software Engineer",
+    title: "Blog | Fahad Bin Munir - Software Developer",
     description:
-        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
+        "Fahad Bin Munir - Software Developer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
-        "Software Engineer",
+        "Software Developer",
         "Web Developer",
         "TypeScript Expert",
         "NextJS Expert",

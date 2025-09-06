@@ -15,13 +15,13 @@ import { MyBlogList } from "./components/my-blogs";
 import MyResume from "./components/my-resume";
 
 export const metadata: Metadata = {
-    title: "Fahad Bin Munir | Software Engineer | Expert in TypeScript, NextJS, and React | Web UX & Performance Specialist",
+    title: "Fahad Bin Munir | Software Developer | Expert in TypeScript, NextJS, and React | Web UX & Performance Specialist",
     description:
-        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
+        "Fahad Bin Munir - Software Developer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
-        "Software Engineer",
+        "Software Developer",
         "Web Developer",
         "TypeScript Expert",
         "NextJS Expert",
@@ -56,6 +56,8 @@ export interface ArticleTypes {
     published_at: string;
     coverImage: string;
 }
+
+export const revalidate = 3600; // invalidate every hour
 
 export default async function HomePage() {
     const blogs = await getDocs(collection(db, "articles"));

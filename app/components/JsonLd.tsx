@@ -1,16 +1,16 @@
 "use client";
 
 import Script from "next/script";
-import { WithContext, WebPage } from "schema-dts";
+import { WebPage, WithContext } from "schema-dts";
 
 const WebPageJsonLd: WithContext<WebPage> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://fahadbinmunir.com/#webpage",
     url: "https://fahadbinmunir.com",
-    name: "Fahad Bin Munir | Software Engineer | Expert in TypeScript, NextJS, and React",
+    name: "Fahad Bin Munir | Software Developer | Expert in TypeScript, NextJS, and React",
     description:
-        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web applications.",
+        "Fahad Bin Munir - Software Developer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web applications.",
     inLanguage: "en-US",
     isAccessibleForFree: true,
     datePublished: "2024-01-01",
@@ -22,9 +22,9 @@ const WebPageJsonLd: WithContext<WebPage> = {
         "@id": "https://fahadbinmunir.com/#person",
         name: "Fahad Bin Munir",
         alternateName: ["Fahad Bin Munir", "Fahad"],
-        jobTitle: "Software Engineer",
+        jobTitle: "Software Developer",
         description:
-            "Software Engineer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web applications.",
+            "Software Developer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web applications.",
         url: "https://fahadbinmunir.com",
         image: {
             "@type": "ImageObject",
@@ -47,11 +47,11 @@ const WebPageJsonLd: WithContext<WebPage> = {
             "UI/UX Design",
             "Performance Optimization",
             "Web Technologies",
-            "Software Engineering",
+            "Software Developering",
         ],
         hasOccupation: {
             "@type": "Occupation",
-            name: "Software Engineer",
+            name: "Software Developer",
             occupationLocation: {
                 "@type": "AdministrativeArea",
                 name: "Remote/Worldwide",
@@ -63,7 +63,7 @@ const WebPageJsonLd: WithContext<WebPage> = {
         },
         alumniOf: {
             "@type": "Organization",
-            name: "Software Engineering Education",
+            name: "Software Developering Education",
         },
     },
 
@@ -78,7 +78,7 @@ const WebPageJsonLd: WithContext<WebPage> = {
     publisher: {
         "@type": "Organization",
         "@id": "https://fahadbinmunir.com/#organization",
-        name: "Fahad Bin Munir - Software Engineering Services",
+        name: "Fahad Bin Munir - Software Developering Services",
         url: "https://fahadbinmunir.com",
         logo: {
             "@type": "ImageObject",
@@ -87,7 +87,7 @@ const WebPageJsonLd: WithContext<WebPage> = {
             height: "400",
         },
         description:
-            "Professional software engineering services specializing in TypeScript, Next.js, and React development. Expert in building high-performance web applications with modern technologies.",
+            "Professional Software Developering services specializing in TypeScript, Next.js, and React development. Expert in building high-performance web applications with modern technologies.",
         founder: {
             "@type": "Person",
             name: "Fahad Bin Munir",
@@ -137,9 +137,9 @@ const WebPageJsonLd: WithContext<WebPage> = {
         "@type": "WebSite",
         "@id": "https://fahadbinmunir.com/#website",
         url: "https://fahadbinmunir.com",
-        name: "Fahad Bin Munir - Software Engineer",
+        name: "Fahad Bin Munir - Software Developer",
         description:
-            "Professional website of Fahad Bin Munir, a Software Engineer specializing in TypeScript, Next.js, and React development.",
+            "Professional website of Fahad Bin Munir, a Software Developer specializing in TypeScript, Next.js, and React development.",
         author: {
             "@type": "Person",
             name: "Fahad Bin Munir",
@@ -171,7 +171,7 @@ const WebPageJsonLd: WithContext<WebPage> = {
         "@id": "https://fahadbinmunir.com/#creativework",
         name: "Fahad Bin Munir",
         description:
-            "A comprehensive website showcasing software engineering projects, technical expertise, and professional experience in web development.",
+            "A comprehensive website showcasing Software Developering projects, technical expertise, and professional experience in web development.",
         author: {
             "@type": "Person",
             "@id": "https://fahadbinmunir.com/#person",
@@ -187,10 +187,10 @@ const WebPageJsonLd: WithContext<WebPage> = {
         dateCreated: "2024-01-01",
         dateModified: new Date().toISOString().split("T")[0],
         inLanguage: "en-US",
-        genre: ["Software Engineer", "Software Developer", "Frontend Expert"],
+        genre: ["Software Developer", "Software Developer", "Frontend Expert"],
         keywords: [
             "Fahad Bin Munir",
-            "Software Engineer",
+            "Software Developer",
             "Web Developer",
             "TypeScript Expert",
             "NextJS Expert",

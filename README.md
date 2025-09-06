@@ -1,6 +1,6 @@
-# Fahad Bin Munir - Senior Software Engineer
+# Fahad Bin Munir - Senior Software Developer
 
-With 4 years of experience in Software Engineering, I specialize in building high-performance, scalable web applications that deliver exceptional user experiences.
+With 4 years of experience in Software Developering, I specialize in building high-performance, scalable web applications that deliver exceptional user experiences.
 
 ## 🚀 Core Expertise
 
@@ -44,6 +44,3 @@ With 4 years of experience in Software Engineering, I specialize in building hig
 ---
 
 _"Building high-performance applications at lightning speed"_
-
-
-

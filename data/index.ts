@@ -39,7 +39,7 @@ export const gridItems = [
     },
     {
         id: 4,
-        title: "Currently Working As a Lead Software Engineer (Frontend) at Fluent Conveyors",
+        title: "Currently Working As a Lead Software Developer (Frontend) at Fluent Conveyors",
         description: "",
         className: "lg:col-span-2 md:col-span-3 md:row-span-1",
         imgClassName: "",
@@ -160,7 +160,7 @@ export const projects = [
 export const workExperience = [
     {
         id: 1,
-        title: "Lead Software Engineer - Frontend",
+        title: "Lead Software Developer - Frontend",
         company: "Fluent Conveyors",
         desc: "Led development of core e-commerce projects, achieving significant performance improvements and SEO enhancements. Implemented scalable solutions that increased customer orders and achieved #1 Google ranking for key terms. Collaborated across teams to integrate frontend and backend systems while leveraging AI to accelerate development cycles and improve code quality.",
         className: "md:col-span-2",
@@ -169,7 +169,7 @@ export const workExperience = [
     },
     {
         id: 2,
-        title: "Software Engineer",
+        title: "Software Developer",
         company: "Anveen Private Limited",
         desc: "Designed and implemented scalable RESTful APIs using Laravel while developing ReactJS components. Led implementation of SPA experience within WordPress using Vue.js and microservices architecture. Gained leadership experience managing a small team using Scrum/Agile methodologies. Executed comprehensive testing including unit and E2E tests for frontend and backend.",
         className: "md:col-span-2", // change to md:col-span-2
