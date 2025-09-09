@@ -131,7 +131,7 @@ export default async function SingleBlogPage({
                 <div className="relative h-[70vh] w-full overflow-hidden">
                     {/* Background Cover Image */}
                     {article.coverImage && (
-                        <div className="absolute inset-0">
+                        <div className="absolute inset-0 opacity-70">
                             <Image
                                 src={
                                     article.coverImage ||
@@ -144,7 +144,7 @@ export default async function SingleBlogPage({
                             />
                             {/* Dark overlay for better text readability */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black" />
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50" />
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
                         </div>
                     )}
 

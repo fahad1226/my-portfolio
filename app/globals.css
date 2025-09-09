@@ -84,7 +84,7 @@
     }
 
     .editor a {
-        @apply font-semibold text-[#DF3226];
+        @apply font-semibold text-blue-700;
     }
 
     .editor img {
