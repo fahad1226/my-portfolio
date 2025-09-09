@@ -15,19 +15,22 @@ import { MyBlogList } from "./components/my-blogs";
 import MyResume from "./components/my-resume";
 
 export const metadata: Metadata = {
-    title: "Fahad Bin Munir | Software Developer | Expert in TypeScript, NextJS, and React | Web UX & Performance Specialist",
+    title: "Fahad Bin Munir | Level 3 Software Engineer",
     description:
-        "Fahad Bin Munir - Software Developer skilled in TypeScript, Next.js & React. Expert in building fast, user-friendly, high-performance web apps",
+        "Fahad Bin Munir - Level 3 Software Engineer skilled in TypeScript, Next.js, React & Laravel. Expert in building fast, scalable, user-friendly, high-performance web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
         "Software Developer",
+        "Software Engineer",
         "Web Developer",
         "TypeScript Expert",
         "NextJS Expert",
         "React Developer",
         "Web UX & Performance Specialist",
         "Frontend Development",
+        "Backend Development",
+        "Laravel Developer",
         "Web Technologies",
         "Software Development",
         "Web Design",
