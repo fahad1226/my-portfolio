@@ -1,15 +1,19 @@
-import { cn, show_data } from "@/lib/utils";
 import Image from "next/image";
 import { ArticleTypes } from "../page";
 import Link from "next/link";
+import MagicButton from "@/components/MagicButton";
+import { FaLocationArrow } from "react-icons/fa6";
 
 export function MyBlogList({
     articles,
     showTitle = true,
+    showMoreButton = true,
 }: {
     articles: ArticleTypes[];
     showTitle?: boolean;
+    showMoreButton?: boolean;
 }) {
+   
     return (
         <>
             <div className="py-16">
@@ -21,11 +25,27 @@ export function MyBlogList({
                 )}
 
                 <div className="max-w-7xl mx-auto mt-12">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        role="list"
+                        aria-label="Blog articles"
+                    >
                         {articles.map((item) => (
                             <CardDemo key={item.id} article={item} />
                         ))}
                     </div>
+
+                    {showMoreButton && (
+                        <div className="flex justify-center mt-12 relative z-20">
+                            <MagicButton
+                                title="View All Blogs"
+                                icon={<FaLocationArrow />}
+                                position="right"
+                                actionType="link"
+                                href="/blog"
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </>
@@ -34,7 +54,7 @@ export function MyBlogList({
 
 export function CardDemo({ article }: { article: ArticleTypes }) {
     return (
-        <div className="group relative z-20">
+        <article className="group relative z-20" role="listitem">
             <Link href={`/blog/${article.slug}`} className="block">
                 <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-blue-500/20">
                     {/* Background Image Container */}
@@ -44,7 +64,7 @@ export function CardDemo({ article }: { article: ArticleTypes }) {
                                 article.coverImage ||
                                 "/images/default-blog-image.avif"
                             }
-                            alt="Blog post background"
+                            alt={`${article.title} - Blog post cover image`}
                             fill
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                             priority={false}
@@ -122,6 +142,6 @@ export function CardDemo({ article }: { article: ArticleTypes }) {
                     <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
             </Link>
-        </div>
+        </article>
     );
 }

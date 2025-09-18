@@ -15,9 +15,9 @@ import { MyBlogList } from "./components/my-blogs";
 import MyResume from "./components/my-resume";
 
 export const metadata: Metadata = {
-    title: "Fahad Bin Munir | Level 3 Software Engineer",
+    title: "Fahad Bin Munir | Software Engineer | 4+ Years Experience",
     description:
-        "Fahad Bin Munir - Level 3 Software Engineer skilled in TypeScript, Next.js, React & Laravel. Expert in building fast, scalable, user-friendly, high-performance web apps",
+        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js, React & Laravel. Expert in building fast, scalable, user-friendly, high-performance and seo focused web apps",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
@@ -65,6 +65,15 @@ export const revalidate = 3600; // invalidate every hour
 export default async function HomePage() {
     const blogs = await getDocs(collection(db, "articles"));
     const articles = blogs.docs.map((doc) => doc.data() as ArticleTypes);
+
+    // Sort articles by published date (newest first) and take the first 3
+    const sortedArticles = articles
+        .sort(
+            (a, b) =>
+                new Date(b.published_at).getTime() -
+                new Date(a.published_at).getTime()
+        )
+        .slice(0, 3);
     return (
         <div className="relative flex justify-center items-center flex-col scroll-smooth overflow-hidden">
             <FloatingNav navItems={navItems} />
@@ -76,7 +85,7 @@ export default async function HomePage() {
                 <MyResume />
                 <Experience />
                 <Approach />
-                <MyBlogList articles={articles} />
+                <MyBlogList articles={sortedArticles} />
                 <Footer />
             </div>
             <JsonLd />

@@ -23,14 +23,17 @@ function BlogHeroSection() {
                 </div>
                 <div className="py-24 sm:py-32">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div className="mx-auto max-w-2xl text-center">
-                            <h1 className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-                                Learn More About{" "}
-                                <span className="brand-color">My Thoughts</span>
+                        <div className="mx-auto max-w-4xl text-center">
+                            <h1
+                                title="Software Development Blog and Articles"
+                                className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl"
+                            >
+                                Let&apos;s Learn{" "}
+                                <span className="brand-color">Together</span>
                             </h1>
                             <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
-                                I write about my thoughts, experiences, and
-                                learnings.
+                                Discover comprehensive tutorials and in-depth articles about modern web development, 
+                                including TypeScript, Next.js, React, Laravel, DSA (Data Structures and Algorithms) and more. Get expert insights, coding best practices, and real-world solutions.
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-4">
                                 <Link

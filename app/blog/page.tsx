@@ -7,30 +7,38 @@ import { Metadata } from "next";
 import BlogHeroSection from "../components/blog-hero";
 import { MyBlogList } from "../components/my-blogs";
 import { ArticleTypes } from "../page";
+import Script from "next/script";
 
-// Force dynamic rendering - disable static generation
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Enable static generation with revalidation for better SEO
+export const dynamic = "force-static";
+export const revalidate = 1800; // Revalidate every 30 minutes
 
 export const metadata: Metadata = {
-    title: "Blog | Fahad Bin Munir - Software Engineer",
+    title: "Blog | Fahad Bin Munir - Software Engineer | 4+ Years Experience",
     description:
-        "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js, React & Laravel. Expert in building fast, scalable, user-friendly, high-performance web apps",
+        "Explore insightful articles on software development, web technologies, and best practices. Learn about TypeScript, Next.js, React, Laravel, and more from an experienced software engineer.",
     metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
-        "Fahad Bin Munir",
-        "Software Engineer",
-        "Web Developer",
-        "TypeScript Expert",
-        "NextJS Expert",
-        "React Developer",
-        "Laravel Developer",
-        "Web UX & Performance Specialist",
-        "Frontend Development",
-        "Backend Development",
-        "Web Technologies",
-        "Software Development",
-        "Web Design",
+        "Software Development Blog",
+        "Web Development Articles",
+        "Programming Tutorials",
+        "TypeScript Tips",
+        "Next.js Guides",
+        "React Best Practices",
+        "Laravel Development",
+        "Web Performance Tips",
+        "Frontend Development Blog",
+        "Backend Development Blog",
+        "Software Engineering Insights",
+        "Coding Best Practices",
+        "Web Development Tips",
+        "Tech Blog",
+        "Developer Blog",
+        "Software Architecture",
+        "Web Security",
+        "Modern Web Development",
+        "JavaScript Tutorials",
+        "Full Stack Development",
     ],
     alternates: {
         canonical: "https://fahadbinmunir.com/blog",
@@ -48,13 +56,59 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
     const blogs = await getDocs(collection(db, "articles"));
     const articles = blogs.docs.map((doc) => doc.data() as ArticleTypes);
+
+    // Structured data for the blog page
+    const blogStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        name: "Fahad Bin Munir - Software Development Blog",
+        description:
+            "Explore insightful articles on software development, web technologies, and best practices. Learn about TypeScript, Next.js, React, Laravel, and more from an experienced software engineer.",
+        url: "https://fahadbinmunir.com/blog",
+        author: {
+            "@type": "Person",
+            name: "Fahad Bin Munir",
+            url: "https://fahadbinmunir.com",
+        },
+        publisher: {
+            "@type": "Person",
+            name: "Fahad Bin Munir",
+            url: "https://fahadbinmunir.com",
+        },
+        blogPost: articles.map((article) => ({
+            "@type": "BlogPosting",
+            headline: article.title,
+            description: article.shortDescription,
+            url: `https://fahadbinmunir.com/blog/${article.slug}`,
+            datePublished: article.published_at,
+            author: {
+                "@type": "Person",
+                name: "Fahad Bin Munir",
+            },
+            image:
+                article.coverImage ||
+                "https://fahadbinmunir.com/images/default-blog-image.avif",
+        })),
+    };
+
     return (
         <>
+            <Script
+                id="blog-json-ld"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(blogStructuredData),
+                }}
+            />
             <BlogHeroSection />
             <div className="relative container mx-auto w-full px-4 sm:px-6">
                 <FloatingNav navItems={navItems} />
 
-                <MyBlogList showTitle={false} articles={articles} />
+                <MyBlogList
+                    showTitle={false}
+                    articles={articles}
+                    showMoreButton={false}
+                />
 
                 <Footer />
             </div>

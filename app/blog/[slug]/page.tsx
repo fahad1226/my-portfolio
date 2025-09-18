@@ -11,6 +11,8 @@ import { notFound } from "next/navigation";
 // Import the ArticleTypes interface
 export interface ArticleTypes {
     id: string;
+    metaTitle: string;
+    metaDescription: string;
     title: string;
     slug: string;
     shortDescription: string;
@@ -38,23 +40,9 @@ export async function generateMetadata({
     }
 
     return {
-        title: `${article.title} | Fahad Bin Munir - Software Engineer`,
-        description: article.shortDescription,
+        title: article.metaTitle,
+        description: article.metaDescription,
         metadataBase: new URL("https://fahadbinmunir.com"),
-        keywords: [
-            "Fahad Bin Munir",
-            "Software Developer",
-            "Software Engineer",
-            "Web Developer",
-            "TypeScript Expert",
-            "NextJS Expert",
-            "React Developer",
-            "Web UX & Performance Specialist",
-            "Frontend Development",
-            "Web Technologies",
-            "Software Development",
-            "Web Design",
-        ],
         alternates: {
             canonical: `https://fahadbinmunir.com/blog/${article.slug}`,
             languages: {

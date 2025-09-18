@@ -1,13 +1,11 @@
 "use client";
 
-import MagicButton from "@/components/MagicButton";
 import { BackgroundLines } from "@/components/ui/background-lines";
-import { IconFileFilled } from "@tabler/icons-react";
 import Link from "next/link";
 
 function MyResume() {
     return (
-        <>
+        <div id="resume">
             <BackgroundLines className="flex items-center pointer-events-none justify-center w-full flex-col px-4">
                 <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-900 to-neutral-700 dark:from-neutral-600 capitalize dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
                     Take a look at my{" "}
@@ -45,7 +43,7 @@ function MyResume() {
                     </Link>
                 </div>
             </BackgroundLines>
-        </>
+        </div>
     );
 }
 

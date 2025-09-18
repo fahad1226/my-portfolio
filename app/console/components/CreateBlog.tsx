@@ -24,6 +24,8 @@ function CreateBlog() {
         coverImage: "",
         duration: "",
         blogCategory: "",
+        metaTitle: "",
+        metaDescription: "",
         published_at: new Date().toISOString().split("T")[0],
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -136,6 +138,46 @@ function CreateBlog() {
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                     <form onSubmit={handleSubmit} className="p-8">
                         <div className="space-y-8">
+                            {/* Meta Title */}
+                            <div className="space-y-4 w-full">
+                                <label
+                                    htmlFor="published_at"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Meta Title
+                                </label>
+                                <input
+                                    type="text"
+                                    id="metaTitle"
+                                    name="metaTitle"
+                                    value={formData.metaTitle}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Enter a meta title for your blog post..."
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white text-black"
+                                />
+                            </div>
+
+                            {/* Meta Description */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="shortDescription"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Meta Description
+                                </label>
+                                <textarea
+                                    id="metaDescription"
+                                    name="metaDescription"
+                                    value={formData.metaDescription}
+                                    onChange={handleChange}
+                                    required
+                                    rows={4}
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white resize-none text-black"
+                                    placeholder="Write a meta description for your blog post..."
+                                />
+                            </div>
+
                             {/* Title Section */}
                             <div className="space-y-4">
                                 <label

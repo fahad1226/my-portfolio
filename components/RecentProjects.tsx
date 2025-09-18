@@ -1,5 +1,3 @@
-"use client";
-
 import { projects } from "@/data";
 import Image from "next/image";
 import { FaLocationArrow } from "react-icons/fa6";
@@ -8,7 +6,7 @@ import Link from "next/link";
 
 const RecentProjects = () => {
     return (
-        <div className="sm:py-20 py-6">
+        <div className="sm:py-20 py-6" id="projects">
             <h2 className="page-sub-heading">
                 A small selection of{" "}
                 <span className="text-purple">recent projects</span>

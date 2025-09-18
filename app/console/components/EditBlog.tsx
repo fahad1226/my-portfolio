@@ -27,6 +27,8 @@ interface BlogDataType {
     content: string;
     coverImage?: string;
     blogCategory: string;
+    metaTitle: string;
+    metaDescription: string;
     duration: string;
     published_at: string | { seconds: number; nanoseconds: number };
     createdAt?: any;
@@ -50,6 +52,8 @@ function EditBlog({ params }: { params: { slug: string } }) {
         coverImage: "",
         duration: "",
         blogCategory: "",
+        metaTitle: "",
+        metaDescription: "",
         published_at: "",
     });
 
@@ -83,6 +87,8 @@ function EditBlog({ params }: { params: { slug: string } }) {
                     coverImage: blogData.coverImage || "",
                     duration: blogData.duration || "",
                     blogCategory: blogData.blogCategory || "",
+                    metaTitle: blogData.metaTitle || "",
+                    metaDescription: blogData.metaDescription || "",
                     published_at: blogData.published_at
                         ? typeof blogData.published_at === "string"
                             ? blogData.published_at
@@ -157,6 +163,8 @@ function EditBlog({ params }: { params: { slug: string } }) {
                 content: formData.content,
                 coverImage: formData.coverImage,
                 duration: formData.duration,
+                metaTitle: formData.metaTitle,
+                metaDescription: formData.metaDescription,
                 published_at: formData.published_at,
                 blogCategory: formData.blogCategory,
                 updatedAt: new Date(),
@@ -264,6 +272,47 @@ function EditBlog({ params }: { params: { slug: string } }) {
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
                     <form onSubmit={handleSubmit} className="p-8">
                         <div className="space-y-8">
+                            {/* Meta Title */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="metaTitle"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Meta Title
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="metaTitle"
+                                    name="metaTitle"
+                                    value={formData.metaTitle}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white text-black"
+                                />
+                            </div>
+
+                            {/* Meta Description */}
+                            <div className="space-y-4">
+                                <label
+                                    htmlFor="metaDescription"
+                                    className="block text-sm font-semibold text-gray-700 uppercase tracking-wide"
+                                >
+                                    Meta Description
+                                </label>
+                                <textarea
+                                    id="metaDescri
+                                    ption"
+                                    name="metaDescription"
+                                    value={formData.metaDescription}
+                                    onChange={handleChange}
+                                    required
+                                    rows={4}
+                                    className="w-full px-6 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 bg-gray-50 focus:bg-white resize-none text-black"
+                                    placeholder="Write a compelling summary that will make readers want to read your full post..."
+                                />
+                            </div>
+
                             {/* Title Section */}
                             <div className="space-y-4">
                                 <label
