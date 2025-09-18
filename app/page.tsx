@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     title: "Fahad Bin Munir | Software Engineer | 4+ Years Experience",
     description:
         "Fahad Bin Munir - Software Engineer skilled in TypeScript, Next.js, React & Laravel. Expert in building fast, scalable, user-friendly, high-performance and seo focused web apps",
-    metadataBase: new URL("https://fahadbinmunir.com"),
     keywords: [
         "Fahad Bin Munir",
         "Software Developer",
