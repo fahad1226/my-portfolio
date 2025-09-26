@@ -407,8 +407,12 @@ function CreateBlog() {
                                                 ],
                                                 ["blockquote", "code-block"],
                                                 [
-                                                    { color: [] },
-                                                    { background: [] },
+                                                    {
+                                                        color: [],
+                                                    },
+                                                    {
+                                                        background: [],
+                                                    },
                                                 ],
                                                 ["link", "image"],
                                                 ["clean"],

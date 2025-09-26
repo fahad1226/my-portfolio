@@ -56,11 +56,9 @@
     color: white !important;
 }
 
-
-
 @layer components {
     .editor p {
-        @apply  mt-2 font-normal leading-6 tracking-wide text-zinc-200 sm:text-lg;
+        @apply mt-2 font-normal leading-6 tracking-wide text-zinc-200 sm:text-lg;
     }
 
     .editor h1 {
@@ -80,7 +78,7 @@
     }
 
     .editor h5 {
-        @apply mb-2 mt-2 text-lg text-gray-300 sm:text-xl;     
+        @apply mb-2 mt-2 text-lg text-gray-300 sm:text-xl;
     }
 
     .editor a {
@@ -92,31 +90,31 @@
     }
 
     .editor ul {
-        @apply  mb-2 ml-6 mt-2 list-inside list-disc text-gray-200;
+        @apply mb-2 ml-6 mt-2 list-inside list-disc text-gray-200;
     }
 
     .editor ul li {
-        @apply  py-2 text-gray-300 sm:text-lg;
+        @apply py-2 text-gray-300 sm:text-lg;
     }
 
     .editor ol {
-        @apply  mb-2 ml-6 mt-2 list-inside list-decimal text-gray-300;
+        @apply mb-2 ml-6 mt-2 list-inside list-decimal text-gray-300;
     }
 
     .editor ol li {
-        @apply  py-2 pl-2 text-gray-300 sm:text-lg;
+        @apply py-2 pl-2 text-gray-300 sm:text-lg;
     }
 
     .editor table th {
-        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
+        @apply py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
     }
 
     .editor table tbody tr {
-        @apply  even:bg-zinc-600 flex justify-between text-base hover:bg-gray-100 sm:text-lg xl:px-6;
+        @apply even:bg-zinc-600 flex justify-between text-base hover:bg-gray-100 sm:text-lg xl:px-6;
     }
 
     .editor .dh {
-        @apply  mb-4 mt-2 text-2xl font-bold text-gray-300;
+        @apply mb-4 mt-2 text-2xl font-bold text-gray-300;
     }
 
     .editor table {
@@ -124,7 +122,7 @@
     }
 
     .editor th {
-        @apply  py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
+        @apply py-3 pl-4 pr-3 text-left font-bold text-gray-300 sm:pl-0;
     }
 
     .editor tbody {
@@ -132,12 +130,131 @@
     }
 
     .editor td {
-        @apply  whitespace-nowrap px-3 py-4 text-gray-300 sm:table-cell;
+        @apply whitespace-nowrap px-3 py-4 text-gray-300 sm:table-cell;
     }
     .editor pre {
-        @apply bg-gray-800 rounded-lg p-4 overflow-x-auto;
+        @apply relative bg-gray-900 border border-gray-700 rounded-lg overflow-hidden shadow-lg;
+        font-family: "Fira Code", "Monaco", "Cascadia Code", "Roboto Mono",
+            monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 12px;
+        padding-top: 40px;
+        margin: 1.5rem 0;
+        overflow-x: auto;
     }
-    .editor code {
-        @apply bg-gray-800 rounded-lg p-2 overflow-x-auto;
+
+    .editor pre::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+        border-bottom: 1px solid #6b7280;
+        z-index: 1;
+    }
+
+    .editor pre::after {
+        content: "● ● ●";
+        position: absolute;
+        top: 6px;
+        left: 12px;
+        color: #9ca3af;
+        font-size: 14px;
+        letter-spacing: 4px;
+        z-index: 2;
+    }
+
+    .editor pre code {
+        @apply block p-4 pt-20 text-gray-100;
+        background: transparent;
+        border-radius: 0;
+        overflow-x: auto;
+        white-space: pre;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .editor pre code::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .editor pre code::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+
+    .editor pre code::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 4px;
+    }
+
+    .editor pre code::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+    }
+
+    /* Inline code styling */
+    .editor code:not(pre code) {
+        @apply bg-gray-800 text-gray-200 px-2 py-1 rounded text-sm font-mono border border-gray-700;
+        background: transparent;
+    }
+
+    /* Syntax highlighting for common languages */
+    .editor pre code .token.comment,
+    .editor pre code .token.prolog,
+    .editor pre code .token.doctype,
+    .editor pre code .token.cdata {
+        color: #6b7280;
+        font-style: italic;
+    }
+
+    .editor pre code .token.punctuation {
+        color: #d1d5db;
+    }
+
+    .editor pre code .token.property,
+    .editor pre code .token.tag,
+    .editor pre code .token.boolean,
+    .editor pre code .token.number,
+    .editor pre code .token.constant,
+    .editor pre code .token.symbol,
+    .editor pre code .token.deleted {
+        color: #f472b6;
+    }
+
+    .editor pre code .token.selector,
+    .editor pre code .token.attr-name,
+    .editor pre code .token.string,
+    .editor pre code .token.char,
+    .editor pre code .token.builtin,
+    .editor pre code .token.inserted {
+        color: #34d399;
+    }
+
+    .editor pre code .token.operator,
+    .editor pre code .token.entity,
+    .editor pre code .token.url,
+    .editor pre code .language-css .token.string,
+    .editor pre code .style .token.string {
+        color: #fbbf24;
+    }
+
+    .editor pre code .token.atrule,
+    .editor pre code .token.attr-value,
+    .editor pre code .token.keyword {
+        color: #60a5fa;
+    }
+
+    .editor pre code .token.function,
+    .editor pre code .token.class-name {
+        color: #a78bfa;
+    }
+
+    .editor pre code .token.regex,
+    .editor pre code .token.important,
+    .editor pre code .token.variable {
+        color: #f59e0b;
     }
 }

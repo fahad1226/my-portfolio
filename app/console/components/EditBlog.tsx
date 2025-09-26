@@ -4,7 +4,6 @@ import { db } from "@/lib/firebase";
 import {
     collection,
     doc,
-    getDoc,
     getDocs,
     query,
     updateDoc,
@@ -544,7 +543,7 @@ function EditBlog({ params }: { params: { slug: string } }) {
                                                 ],
                                                 ["blockquote", "code-block"],
                                                 [
-                                                    { color: [] },
+                                                    { color: [" "] },
                                                     { background: [] },
                                                 ],
                                                 ["link", "image"],

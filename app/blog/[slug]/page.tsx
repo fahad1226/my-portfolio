@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import MagicButton from "@/components/MagicButton";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItems } from "@/data";
 import { db } from "@/lib/firebase";
@@ -7,6 +8,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FaLocationArrow } from "react-icons/fa6";
 
 // Import the ArticleTypes interface
 export interface ArticleTypes {
@@ -48,6 +50,32 @@ export async function generateMetadata({
             languages: {
                 "en-US": `https://fahadbinmunir.com/blog/${article.slug}`,
             },
+        },
+        openGraph: {
+            title: article.metaTitle,
+            description: article.metaDescription,
+            url: `https://fahadbinmunir.com/blog/${article.slug}`,
+            countryName: "Bangladesh",
+            emails: ["fahadbinmnr@gmail.com"],
+            gender: "male",
+            images: [
+                {
+                    url: article.coverImage,
+                    width: 1200,
+                    height: 630,
+                    alt: article.title,
+                },
+            ],
+        },
+        twitter: {
+            images: [
+                {
+                    url: article.coverImage,
+                    width: 1200,
+                    height: 630,
+                    alt: article.title,
+                },
+            ],
         },
         publisher: "Fahad Bin Munir",
         authors: {
@@ -234,61 +262,116 @@ export default async function SingleBlogPage({
                                 <h2 className="text-3xl font-bold mb-12 text-white text-center">
                                     Related Articles
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    {relatedBlogs.slice(0, 3).map((blog) => (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8  relative z-20">
+                                    {relatedBlogs.map((blog) => (
                                         <Link
-                                            key={blog.id}
                                             href={`/blog/${blog.slug}`}
-                                            className="group bg-gray-900/50 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-gray-800/70 transition-all duration-300 border border-gray-800/50 hover:border-gray-700/50 hover:shadow-2xl hover:shadow-indigo-500/10"
+                                            className="block"
+                                            key={blog.id}
                                         >
-                                            <div className="relative h-48 overflow-hidden">
-                                                <Image
-                                                    src={
-                                                        blog.coverImage ||
-                                                        "/images/default-blog-image.avif"
-                                                    }
-                                                    alt={blog.title}
-                                                    width={1000}
-                                                    height={1000}
-                                                    unoptimized
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                                />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                            </div>
-                                            <div className="p-6">
-                                                <h3 className="font-semibold text-xl text-white mb-3 line-clamp-2 group-hover:text-indigo-400 transition-colors duration-300">
-                                                    {blog.title}
-                                                </h3>
-                                                <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
-                                                    {blog.shortDescription}
-                                                </p>
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex items-center space-x-2">
-                                                        <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
-                                                        <span className="text-xs text-gray-500 font-medium">
-                                                            {blog.duration}
+                                            <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-blue-500/20">
+                                                {/* Background Image Container */}
+                                                <div className="relative h-64 w-full overflow-hidden">
+                                                    <Image
+                                                        src={
+                                                            blog.coverImage ||
+                                                            "/images/default-blog-image.avif"
+                                                        }
+                                                        alt={`${blog.title} - Blog post cover image`}
+                                                        fill
+                                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                        priority={false}
+                                                    />
+
+                                                    {/* Overlay with better gradient */}
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+                                                    {/* Category/Tag Badge */}
+                                                    <div className="absolute top-4 right-4 z-20">
+                                                        <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-400/30 capitalize backdrop-blur-sm">
+                                                            {blog.blogCategory ||
+                                                                "Blog Post"}
                                                         </span>
                                                     </div>
-                                                    <div className="flex items-center text-indigo-400 text-sm font-medium group-hover:text-indigo-300 transition-colors duration-300">
-                                                        Read more
-                                                        <svg
-                                                            className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M9 5l7 7-7 7"
-                                                            />
-                                                        </svg>
+                                                </div>
+
+                                                {/* Content Section */}
+                                                <div className="p-6 space-y-4">
+                                                    {/* Title */}
+                                                    <h3 className="font-bold text-xl text-white leading-tight line-clamp-2 group-hover:text-blue-300 transition-colors duration-300">
+                                                        {blog.title}
+                                                    </h3>
+
+                                                    {/* Description */}
+                                                    <p className="text-sm text-gray-300 leading-relaxed line-clamp-3 opacity-90">
+                                                        {blog.shortDescription}
+                                                    </p>
+
+                                                    {/* Author and Meta Info */}
+                                                    <div className="flex items-center justify-between pt-2">
+                                                        <div className="flex items-center space-x-3">
+                                                            <div className="relative">
+                                                                <Image
+                                                                    height="40"
+                                                                    width="40"
+                                                                    alt="Avatar"
+                                                                    src="/images/fahad.jpeg"
+                                                                    className="h-10 w-10 rounded-full border-2 border-white/20 object-cover shadow-lg"
+                                                                />
+                                                                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
+                                                            </div>
+                                                            <div className="flex flex-col">
+                                                                <p className="font-semibold text-sm text-white">
+                                                                    Fahad Bin
+                                                                    Munir
+                                                                </p>
+                                                                <p className="text-xs text-gray-400">
+                                                                    {
+                                                                        blog.duration
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Read More Button */}
+                                                        <div className="flex items-center space-x-2 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                                                            <span className="text-sm font-medium">
+                                                                Read
+                                                            </span>
+                                                            <svg
+                                                                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={
+                                                                        2
+                                                                    }
+                                                                    d="M9 5l7 7-7 7"
+                                                                />
+                                                            </svg>
+                                                        </div>
                                                     </div>
                                                 </div>
+
+                                                {/* Hover Effect Border */}
+                                                <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                                             </div>
                                         </Link>
                                     ))}
+                                </div>
+
+                                <div className="flex justify-center mt-12 relative z-20">
+                                    <MagicButton
+                                        title="View All Blogs"
+                                        icon={<FaLocationArrow />}
+                                        position="right"
+                                        actionType="link"
+                                        href="/blog"
+                                    />
                                 </div>
                             </div>
                         )}
