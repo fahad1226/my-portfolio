@@ -12,6 +12,10 @@ const firaSans = Fira_Sans({
 // Google Tag Manager ID - centralized for easy management
 const GTM_ID = "GTM-TVTG8GR3";
 
+export const metadata: Metadata = {
+    metadataBase: new URL("https://fahadbinmunir.com"),
+};
+
 export default function RootLayout({
     children,
 }: Readonly<{

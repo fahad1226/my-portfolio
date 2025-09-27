@@ -44,7 +44,6 @@ export async function generateMetadata({
     return {
         title: article.metaTitle,
         description: article.metaDescription,
-        metadataBase: new URL("https://fahadbinmunir.com"),
         alternates: {
             canonical: `https://fahadbinmunir.com/blog/${article.slug}`,
             languages: {

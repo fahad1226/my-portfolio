@@ -13,7 +13,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'res.cloudinary.com',
+                hostname: 'plus.unsplash.com',
             },
             {
                 protocol: 'https',
@@ -21,23 +21,11 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'lh3.googleusercontent.com',
+                hostname: 'image.lexica.art',
             },
             {
                 protocol: 'https',
-                hostname: 'platform-lookaside.fbsbx.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'graph.facebook.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'pbs.twimg.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'abs.twimg.com',
+                hostname: 'i.pinimg.com',
             },
             {
                 protocol: 'https',
@@ -46,10 +34,6 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'i.imgur.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'avatars.githubusercontent.com',
             },
             {
                 protocol: 'https',

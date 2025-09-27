@@ -46,6 +46,30 @@ export const metadata: Metadata = {
             "en-US": "https://fahadbinmunir.com/blog",
         },
     },
+    openGraph: {
+        title: "Blog | Fahad Bin Munir - Software Engineer | 4+ Years Experience",
+        description:
+            "Explore insightful articles on software development, web technologies, and best practices. Learn about TypeScript, Next.js, React, Laravel, and more from an experienced software engineer.",
+        url: "https://fahadbinmunir.com/blog",
+        images: [
+            {
+                url: "/images/default-blog-image.avif",
+                width: 1200,
+                height: 630,
+                alt: "Fahad Bin Munir - Software Engineer | 4+ Years Experience",
+            },
+        ],
+    },
+    twitter: {
+        images: [
+            {
+                url: "/images/default-blog-image.avif",
+                width: 1200,
+                height: 600,
+                alt: "Fahad Bin Munir - Software Engineer | 4+ Years Experience",
+            },
+        ],
+    },
     publisher: "Fahad Bin Munir",
     authors: {
         name: "Fahad Bin Munir",
