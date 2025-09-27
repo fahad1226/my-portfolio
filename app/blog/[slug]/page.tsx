@@ -51,25 +51,9 @@ export async function generateMetadata({
             },
         },
         openGraph: {
-            title: article.metaTitle,
-            description: article.metaDescription,
-            url: `https://fahadbinmunir.com/blog/${article.slug}`,
-            countryName: "Bangladesh",
-            emails: ["fahadbinmnr@gmail.com"],
-            gender: "male",
             images: [
                 {
-                    url: article.coverImage,
-                    width: 1200,
-                    height: 630,
-                    alt: article.title,
-                },
-            ],
-        },
-        twitter: {
-            images: [
-                {
-                    url: article.coverImage,
+                    url: "/images/fahad.jpeg",
                     width: 1200,
                     height: 630,
                     alt: article.title,

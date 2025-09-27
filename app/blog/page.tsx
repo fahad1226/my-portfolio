@@ -11,7 +11,7 @@ import Script from "next/script";
 
 // Enable static generation with revalidation for better SEO
 export const dynamic = "force-static";
-export const revalidate = 1800; // Revalidate every 30 minutes
+export const revalidate = 400; // Revalidate every 8 minutes
 
 export const metadata: Metadata = {
     title: "Blog | Fahad Bin Munir - Software Engineer | 4+ Years Experience",
