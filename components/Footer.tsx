@@ -51,9 +51,12 @@ export default function Footer() {
                             >
                                 <Image
                                     src={info.img}
-                                    alt="Fahad Bin Munir - a Passionate Software Developer"
+                                    alt="Fahad Bin Munir - a Passionate Software Engineer"
                                     width={20}
                                     height={20}
+                                    loading="lazy"
+                                    style={{ width: "auto", height: "auto" }}
+                                    className="max-w-full max-h-full"
                                 />
                             </Link>
                         ))}

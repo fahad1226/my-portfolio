@@ -22,7 +22,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" dir="ltr">
+        <html lang="en" dir="ltr" suppressHydrationWarning>
             <head>
                 {/* Charset declaration - must be the first element in head */}
                 <meta charSet="utf-8" />
@@ -36,7 +36,7 @@ export default function RootLayout({
 
                 <meta name="robots" content="index, follow" />
             </head>
-            <body className={firaSans.className}>
+            <body className={firaSans.className} suppressHydrationWarning>
                 {/* Google Tag Manager (noscript) - Must be placed immediately after opening <body> tag */}
                 <noscript>
                     <iframe

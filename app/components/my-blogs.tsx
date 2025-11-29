@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { ArticleTypes } from "../page";
-import Link from "next/link";
 import MagicButton from "@/components/MagicButton";
+import Image from "next/image";
+import Link from "next/link";
 import { FaLocationArrow } from "react-icons/fa6";
+import { ArticleTypes } from "../page";
 
 export function MyBlogList({
     articles,
@@ -13,7 +13,6 @@ export function MyBlogList({
     showTitle?: boolean;
     showMoreButton?: boolean;
 }) {
-   
     return (
         <>
             <div className="py-16">
@@ -65,9 +64,10 @@ export function CardDemo({ article }: { article: ArticleTypes }) {
                                 "/images/default-blog-image.avif"
                             }
                             alt={`${article.title} - Blog post cover image`}
-                            fill
+                            width={500}
+                            height={500}
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            priority={false}
+                            loading="lazy"
                         />
 
                         {/* Overlay with better gradient */}

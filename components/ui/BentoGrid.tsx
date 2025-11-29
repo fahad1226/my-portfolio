@@ -1,8 +1,9 @@
 "use client";
 
-import { IoMailOutline } from "react-icons/io5";
-import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { IoMailOutline } from "react-icons/io5";
 import MagicButton from "../MagicButton";
 
 const GridGlobe = dynamic(
@@ -16,7 +17,6 @@ const GridGlobe = dynamic(
         ),
     }
 );
-import Image from "next/image";
 
 export const BentoGrid = ({
     className,
@@ -87,6 +87,8 @@ export const BentoGridItem = ({
                                 imgClassName,
                                 "object-cover object-center w-full h-full opacity-30 brightness-90 bg-blend-overlay"
                             )}
+                            priority
+                            quality={70}
                         />
                     )}
                 </div>
