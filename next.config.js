@@ -29,19 +29,11 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'graph.facebook.com',
+                hostname: 'i.pinimg.com',
             },
             {
                 protocol: 'https',
                 hostname: 'pbs.twimg.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'abs.twimg.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'cdn.discordapp.com',
             },
             {
                 protocol: 'https',
@@ -50,14 +42,6 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'avatars.githubusercontent.com',
-            },
-            {
-                protocol: 'https',
-                hostname: '*.amazonaws.com',
-            },
-            {
-                protocol: 'https',
-                hostname: '*.cloudfront.net',
             },
         ],
     },

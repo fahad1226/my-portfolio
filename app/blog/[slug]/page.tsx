@@ -128,8 +128,15 @@ export default async function SingleBlogPage({
         notFound();
     }
 
-    // Filter out the current article to get related blogs
-    const relatedBlogs = allBlogs.filter((blog) => blog.slug !== params.slug);
+    // Filter out the current article, sort by published date (latest first), and get only the latest 3
+    const relatedBlogs = allBlogs
+        .filter((blog) => blog.slug !== params.slug)
+        .sort((a, b) => {
+            const dateA = new Date(a.published_at).getTime();
+            const dateB = new Date(b.published_at).getTime();
+            return dateB - dateA; // Sort descending (newest first)
+        })
+        .slice(0, 3); // Get only the latest 3 blogs
 
     // Format the published date
     const publishedDate = new Date(article.published_at).toLocaleDateString(

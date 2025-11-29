@@ -4,10 +4,10 @@ import { navItems } from "@/data";
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Metadata } from "next";
+import Script from "next/script";
 import BlogHeroSection from "../components/blog-hero";
 import { MyBlogList } from "../components/my-blogs";
 import { ArticleTypes } from "../page";
-import Script from "next/script";
 
 // Enable static generation with revalidation for better SEO
 export const dynamic = "force-static";
@@ -28,18 +28,38 @@ export const metadata: Metadata = {
         "Laravel Development",
         "Web Performance Tips",
         "Frontend Development Blog",
-        "Backend Development Blog",
         "Software Engineering Insights",
         "Coding Best Practices",
         "Web Development Tips",
         "Tech Blog",
         "Developer Blog",
-        "Software Architecture",
-        "Web Security",
         "Modern Web Development",
         "JavaScript Tutorials",
-        "Full Stack Development",
     ],
+    openGraph: {
+        type: "website",
+        images: [
+            {
+                url: "/opengraph-image.png",
+                width: 1200,
+                height: 300,
+                alt: "Fahad Bin Munir | Software Engineer | 4+ Years Experience",
+                type: "image/png",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        images: [
+            {
+                url: "/twitter-image.png",
+                width: 1200,
+                height: 300,
+                alt: "Fahad Bin Munir | Software Engineer | 4+ Years Experience",
+                type: "image/png",
+            },
+        ],
+    },
     alternates: {
         canonical: "https://fahadbinmunir.com/blog",
         languages: {
@@ -75,6 +95,7 @@ export default async function BlogPage() {
             name: "Fahad Bin Munir",
             url: "https://fahadbinmunir.com",
         },
+
         blogPost: articles.map((article) => ({
             "@type": "BlogPosting",
             headline: article.title,
