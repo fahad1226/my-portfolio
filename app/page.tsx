@@ -17,7 +17,7 @@ import MyResume from "./components/my-resume";
 export const metadata: Metadata = {
     title: "Fahad Bin Munir | Software Engineer | 4+ Years Experience",
     description:
-        "Fahad Bin Munir — Software Engineer with 4+ years of experience, specializing in TypeScript, Next.js, React, and Laravel. Expert in building high-performance, scalable, SEO-optimized, and user-focused web applications that deliver seamless experiences and measurable business results. Passionate about modern frontend architecture, clean code, and performance optimization.",
+        "Fahad Bin Munir — Software Engineer with 4+ years of experience specializing in TypeScript, Next.js, React, and Laravel. I build high-performance, scalable, SEO-optimized, and user-focused web applications with clean architecture and modern frontend engineering practices.",
     keywords: [
         "Fahad Bin Munir",
         "Software Developer",
